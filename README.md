@@ -4,6 +4,7 @@ This is the repository for the Web Technologies course.
 ## Environment
 Requires NodeJS and NPM.
 
+## Usages
 Use the following command in the terminal to install Node modules:
 
         > npm install
