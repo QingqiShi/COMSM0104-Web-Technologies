@@ -1,0 +1,29 @@
+{
+  "name": "webtechnologies",
+  "version": "1.0.0",
+  "description": "Web Technologies course.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QingqiShi/COMSM0104-Web-Technologies.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "Qingqi Shi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QingqiShi/COMSM0104-Web-Technologies/issues"
+  },
+  "homepage": "https://github.com/QingqiShi/COMSM0104-Web-Technologies#readme",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-curl": "^2.2.0",
+    "grunt-html": "^8.3.0"
+  }
+}
