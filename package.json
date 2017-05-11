@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/QingqiShi/COMSM0104-Web-Technologies/issues"
   },
-  "homepage": "https://github.com/QingqiShi/COMSM0104-Web-Technologies#readme",
+  "homepage": "https://github.com/QingqiShi/COMSM0104-Web-Technologies",
   "dependencies": {
     "express": "^4.15.2",
     "grunt": "^1.0.1",
