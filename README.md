@@ -15,4 +15,8 @@ Then use the following to start a local server on http://localhost:8080:
 
 Use the following to validate html (may require install of grunt-cli as global):
 
-        > grunt   
+        > grunt
+
+To start the server:
+
+        > node ./server.js
