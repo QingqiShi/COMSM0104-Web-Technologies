@@ -5,15 +5,23 @@ module.exports = function(grunt) {
 
         'curl-dir': {
             './test': [
-                'http://localhost:8080/index.html'
+                'http://localhost:8080/index.html',
+                'http://localhost:8080/browse.html',
+                'http://localhost:8080/game.html',
+                'http://localhost:8080/about.html'
             ]
         },
-      
+
         htmllint: {
-            all: ["test/index.html"]
+            all: [
+                "test/index.html",
+                "test/browse.html",
+                "test/game.html",
+                "test/about.html"
+            ]
         },
 
-        clean: 
+        clean:
             ['./test/**']
     });
 
