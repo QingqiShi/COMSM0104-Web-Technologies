@@ -5,9 +5,21 @@ This is the repository for the Web Technologies course.
 Requires NodeJS and NPM.
 
 ## Usages
-Use the following command in the terminal to install Node modules:
+Navigate to the base folder of the repository in the terminal, and use the following command to install Node modules:
 
         > npm install
+
+Navigate to the express folder:
+
+        > cd express
+
+Use npm to install modules again:
+
+        > npm install
+
+Navigate back to the base folder:
+
+        > cd ../
 
 Then use the following to start a local server on http://localhost:8080:
 
