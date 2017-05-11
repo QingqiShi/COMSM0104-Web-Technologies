@@ -25,6 +25,6 @@ Then use the following to start a local server on http://localhost:8080:
 
         > npm start
 
-Use the following to validate html (may require install of grunt-cli as global):
+Use the following to validate html (may require installation of grunt-cli as global):
 
         > grunt
