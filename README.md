@@ -11,9 +11,8 @@ Use the following command in the terminal to install Node modules:
 
 Then use the following to start a local server on http://localhost:8080:
 
-        > node server.js
+        > npm start
 
 Use the following to validate html (may require install of grunt-cli as global):
 
         > grunt
-        
