@@ -4,7 +4,11 @@ This is the repository for the Web Technologies course.
 ## Environment
 Requires NodeJS and NPM.
 
-## Usages
+## Installation
+If haven't already, install grunt-cli as global:
+
+        > npm install grunt-cli -g
+
 Navigate to the base folder of the repository in the terminal, and use the following command to install Node modules:
 
         > npm install
@@ -17,11 +21,8 @@ Use npm to install modules again:
 
         > npm install
 
-Navigate back to the base folder:
-
-        > cd ../
-
-Then use the following to start a local server on http://localhost:8080:
+## Usage
+Navigate back to the base folder of the repository, then use the following to start a local server on http://localhost:8080:
 
         > npm start
 
