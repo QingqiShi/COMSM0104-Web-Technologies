@@ -9,18 +9,20 @@
 
 {{> nav_bar }}
 
-<p>Notes to Muyu:</p>
+<div class="content">
+    <p>Notes to Muyu:</p>
 
-<ul>
+    <ul>
 
-    <li><p>Currently included script file (use it): <code>express/public/javascripts/game_of_life.js</code></p></li>
+        <li><p>Currently included script file (use it): <code>express/public/javascripts/game_of_life.js</code></p></li>
 
-    <li><p>To add more scripts, add them to <code>express/public/javascripts/</code> and don't forget to include them to the top of: <code>express/views/game.hbs</code></p></li>
+        <li><p>To add more scripts, add them to <code>express/public/javascripts/</code> and don't forget to include them to the top of: <code>express/views/game.hbs</code></p></li>
 
-    <li><p>Below is a <code>canvas</code> tag (with <code>id="game_canvas"</code>) with some basic attributes and styles, fell free to change them. You can change the styles at: <code>express/public/stylesheets/style.css</code>.</p></li>
+        <li><p>Below is a <code>canvas</code> tag (with <code>id="game_canvas"</code>) with some basic attributes and styles, fell free to change them. You can change the styles at: <code>express/public/stylesheets/style.css</code>.</p></li>
 
-</ul>
+    </ul>
 
-<canvas id="game_canvas" width="160" height="90"></canvas>
+    <canvas id="game_canvas" width="160" height="90"></canvas>
+</div>
 
 {{> footer }}
