@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var game = require('./routes/game');
 var browse = require('./routes/browse');
 var about = require('./routes/about');
+var signin = require('./routes/signin');
 
 var hbs = require('hbs');
 
@@ -54,6 +55,7 @@ app.use('/index.html', index);
 app.use('/game.html', game);
 app.use('/browse.html', browse);
 app.use('/about.html', about);
+app.use('/signin.html', signin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

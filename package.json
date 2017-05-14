@@ -2,7 +2,7 @@
   "name": "webtechnologies",
   "version": "1.0.0",
   "description": "Web Technologies course.",
-  "main": "server.js",
+  "main": "express/bin/www",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node express/bin/www"
