@@ -42,7 +42,14 @@ a {
     font-weight: bold;
 }
 
-#main_nav .user {
+#main_nav span {
+    float: left;
+    display: inline-block;
+    line-height: 3.5rem;
+    margin-left: 1rem;
+}
+
+#user_sign_in_btn, #user_sign_up_btn {
     float: left;
     display: inline-block;
     line-height: 3.5rem;
@@ -51,7 +58,7 @@ a {
     padding-right: 1rem;
 }
 
-#main_nav .user:hover {
+#user_sign_in_btn:hover, #user_sign_up_btn:hover {
     background-color: #fff;
     color: #000;
     cursor: pointer;
@@ -111,22 +118,23 @@ footer p {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.login_pop_up {
+.sign_in_pop_up, .sign_up_pop_up {
     position: fixed;
     top: 50%;
     left: 50%;
     width: 16rem;
-    height: 6rem;
+    height: 18rem;
     margin-left: -10rem;
-    margin-top: -5rem;
+    margin-top: -9rem;
     background-color: #fff;
     box-shadow: 0 0 5rem #000;
     display: table;
     border-collapse: separate;
     border-spacing: 1rem;
+    text-align: center;
 }
 
-.login_pop_up .close {
+.sign_in_pop_up .close, .sign_up_pop_up .close {
     position: absolute;
     right: 0;
     top: 0;
@@ -136,26 +144,26 @@ footer p {
     text-align: center;
 }
 
-.login_pop_up .close:hover {
+.sign_in_pop_up .close:hover, .sign_up_pop_up .close:hover {
     cursor: pointer;
     background-color: #481a72;
     color: #fff;
 }
 
-.login_pop_up form {
+.sign_in_pop_up form, .sign_up_pop_up form {
     text-align: center;
 }
 
-.login_pop_up .row {
+.sign_in_pop_up .row, .sign_up_pop_up .row {
     display: table-row;
     width: 100%;
 }
 
-.login_pop_up .row span {
+.sign_in_pop_up .row label, .sign_up_pop_up .row label {
     display: table-cell;
 }
 
-.login_pop_up .row input {
+.sign_in_pop_up .row input, .sign_up_pop_up .row input {
     display: table-cell;
     margin-left: 0.5rem;
 }
@@ -165,7 +173,9 @@ input.btn {
     color: #fff;
     background-color: #481a72;
     border: 0;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
+    line-height: 1rem;
+    font-size: 0.7rem;
 }
 
 input.btn:hover {
@@ -174,6 +184,10 @@ input.btn:hover {
     background-color: #000;
     border: 0;
     cursor: pointer;
+}
+
+.sign_in_pop_up .sign_up_message {
+    margin-top: 2rem;
 }
 
 .hide {
