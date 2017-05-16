@@ -26,6 +26,7 @@ router.post('/', function(req, res, next) {
             var hash = crypto.pbkdf2Sync(password, salt, 100000, 512, 'sha512').toString('hex');
             if (hash == row.user_hash) {
                 result = "SUCCESS";
+                req.session.user_name = row.user_name;
             } else {
                 result = "FAILED_INCORRECT_PASSWORD";
             }

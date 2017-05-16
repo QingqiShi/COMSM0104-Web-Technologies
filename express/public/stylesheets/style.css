@@ -64,6 +64,13 @@ a {
     cursor: pointer;
 }
 
+.user_signed_in {
+    float: left;
+    display: inline-block;
+    line-height: 3.5rem;
+    margin-left: 1rem;
+}
+
 /* Start button */
 .start_btn {
     height: 3rem;

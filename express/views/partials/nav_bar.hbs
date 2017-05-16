@@ -1,7 +1,12 @@
 <nav id="main_nav">
     <div class="site_name">Game of Life</div>
+    {{#if user_name}}
+    <div class="user_signed_in">
+        Hi, {{user_name}} <a href="signout.html?url={{url}}">Sign Out</a>
+    </div>
+    {{else}}
     <div id="user_sign_in_btn">Sign in</div> <span>or</span> <div id="user_sign_up_btn">Sign up</div>
-
+    {{/if}}
     <a href="/">Home</a> |
     <a href="/game.html">Game</a> |
     <a href="/browse.html">Browse</a> |

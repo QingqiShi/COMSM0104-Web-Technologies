@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var crypto = require('crypto');
 
 var index = require('./routes/index');
 var game = require('./routes/game');
@@ -11,6 +13,7 @@ var browse = require('./routes/browse');
 var about = require('./routes/about');
 var signin = require('./routes/signin');
 var signup = require('./routes/signup');
+var signout = require('./routes/signout');
 
 var hbs = require('hbs');
 
@@ -27,6 +30,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: crypto.randomBytes(128).toString('base64')
+}));
 
 // Handlebars partial directory
 hbs.registerPartials(__dirname + '/views/partials');
@@ -58,6 +66,7 @@ app.use('/browse.html', browse);
 app.use('/about.html', about);
 app.use('/signin.html', signin);
 app.use('/signup.html', signup);
+app.use('/signout.html', signout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
