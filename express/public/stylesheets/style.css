@@ -150,6 +150,20 @@ footer p {
     color: #fff;
 }
 
+.sign_in_fail, .sign_up_fail {
+    padding: 1rem;
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.35);
+    color: red;
+}
+
+.sign_in_success {
+    padding: 1rem;
+    border: 1px solid green;
+    background-color: rgba(0, 255, 0, 0.35);
+    color: green;
+}
+
 .sign_in_pop_up form, .sign_up_pop_up form {
     text-align: center;
 }
@@ -191,5 +205,6 @@ input.btn:hover {
 }
 
 .hide {
+    display: none;
     visibility: hidden;
 }
