@@ -1,8 +1,8 @@
 {{#extend "scripts"}}
-<!-- <script src="/javascripts/game_of_life.js"></script> -->
+<script src="/javascripts/game_of_life.js"></script>
 <!-- We might need to install jQuery to run the code, or just include it by url -->
 {{!-- Add more scripts here --}}
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
         // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
         Array.matrix = function (m, n, initial) {
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
 );
 
 
-</script>
+</script> -->
 {{/extend}}
 
 {{> nav_bar }}
@@ -232,6 +232,8 @@ document.addEventListener("DOMContentLoaded", function() {
             <h2>Controls</h2>
             <a id="start" href="javascript:void(0)">Start</a><br />
             <a id="stop" href="javascript:void(0)">Stop</a><br />
+            <a id="zoomin" href="javascript:void(0)">Zoom in</a>
+            <a id="zoomout" href="javascript:void(0)">Zoom out</a><br />
             <!-- <input id = "speed" type ="range" min = "10" max = "500" step = "49" value = 50> -->
             <a id="clearLink" href="javascript:void(0)">Clear Grid</a>
             <br />
