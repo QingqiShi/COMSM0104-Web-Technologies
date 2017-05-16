@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var clearLink = document.getElementById("clearLink");
     var zoomInLink = document.getElementById("zoomin");
     var zoomOutLink = document.getElementById("zoomout");
+    var speedUpLink = document.getElementById("speedup");
+    var speedDownLink = document.getElementById("speeddown");
+    var speedRangeLink = document.getElementById("speed");
     var width = gridCanvas.width;
     var height = gridCanvas.height;
 
@@ -83,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return total;
     };
-
+    
     Life.copyGrid = function(source, destination) {
         for (var h = 0; h < Life.HEIGHT; h++) {
             destination[h] = source[h].slice(0);
@@ -119,7 +122,44 @@ document.addEventListener("DOMContentLoaded", function() {
         Life.counter = 0;
         clearInterval(Life.interval);
         Life.state = Life.STOPPED;
-        updateAnimations();
+        update();
+    };
+
+    speedUpLink.onclick = function() {
+        if(Life.state == Life.RUNNING){
+            if(Life.DELAY>=100){
+                Life.DELAY-=50;
+            }
+            clearInterval(Life.interval);
+
+            Life.interval = setInterval(function() {
+                update();
+            }, Life.DELAY);
+        }
+    };
+
+    speedDownLink.onclick = function() {
+        if(Life.state == Life.RUNNING){
+            if(Life.DELAY<=450){
+                Life.DELAY+=50;
+            }
+            clearInterval(Life.interval);
+
+            Life.interval = setInterval(function() {
+                update();
+            }, Life.DELAY);
+        }
+    };
+
+    speedRangeLink.onclick = function() {
+        if(Life.state == Life.RUNNING){
+            Life.DELAY = 520 - speedRangeLink.value;
+            clearInterval(Life.interval);
+
+            Life.interval = setInterval(function() {
+                update();
+            }, Life.DELAY);
+        }
     };
 
     zoomInLink.onclick = function(){
