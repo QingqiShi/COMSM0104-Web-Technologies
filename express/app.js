@@ -10,6 +10,7 @@ var game = require('./routes/game');
 var browse = require('./routes/browse');
 var about = require('./routes/about');
 var signin = require('./routes/signin');
+var signup = require('./routes/signup');
 
 var hbs = require('hbs');
 
@@ -23,7 +24,7 @@ app.set('view engine', 'hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -56,6 +57,7 @@ app.use('/game.html', game);
 app.use('/browse.html', browse);
 app.use('/about.html', about);
 app.use('/signin.html', signin);
+app.use('/signup.html', signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

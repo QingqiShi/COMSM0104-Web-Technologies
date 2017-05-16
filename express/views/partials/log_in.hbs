@@ -2,7 +2,13 @@
     <div class="sign_in_pop_up hide">
         <div class="close">x</div>
         <h2>Sign In</h2>
-        <form action="/signin.html">
+        <div class="sign_in_fail hide">
+
+        </div>
+        <div class="sign_in_success hide">
+
+        </div>
+        <form action="/signin.html" method="post">
             <div class="row">
                 <label for="sign_in_user_name">Username</label> <input id="sign_in_user_name" type="text" name="user_name">
             </div>
@@ -20,7 +26,10 @@
     <div class="sign_up_pop_up hide">
         <div class="close">x</div>
         <h2>Sign Up</h2>
-        <form action="/signup.html">
+        <div class="sign_up_fail hide">
+            Test
+        </div>
+        <form action="/signup.html" method="post">
             <div class="row">
                 <label for="sign_up_user_name">Username</label> <input id="sign_up_user_name" type="text" name="user_name">
             </div>
