@@ -1,5 +1,4 @@
-$(document).ready(
-    function() {
+document.addEventListener("DOMContentLoaded", function() {
         // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
         Array.matrix = function (m, n, initial) {
             var a, i, j, mat = [];
@@ -136,62 +135,62 @@ $(document).ready(
                         //context.clearRect();
                     }
                     context.fillRect(
-                        w * Life.CELL_SIZE +1,
-                        h * Life.CELL_SIZE +1,
-                        Life.CELL_SIZE -1,
-                        Life.CELL_SIZE -1);
-                    }
+                            w * Life.CELL_SIZE +1,
+                            h * Life.CELL_SIZE +1,
+                            Life.CELL_SIZE -1,
+                            Life.CELL_SIZE -1);
                 }
-                counterSpan.innerHTML = Life.counter;
+            }
+            counterSpan.innerHTML = Life.counter;
+        };
+
+        if (gridCanvas.getContext) {
+            var context = gridCanvas.getContext('2d');
+            var offset = Life.CELL_SIZE;
+
+            for (var x = 0; x <= Life.X; x += Life.CELL_SIZE) {
+                context.moveTo(0.5 + x, 0);
+                context.lineTo(0.5 + x, Life.Y);
+            }
+            for (var y = 0; y <= Life.Y; y += Life.CELL_SIZE) {
+                context.moveTo(0, 0.5 + y);
+                context.lineTo(Life.X, 0.5 + y);
+            }
+            context.strokeStyle = "#fff";
+            context.stroke();
+
+            function canvasClickHandler(event) {
+                var cell = getCursorPosition(event);
+                if(Life.grid[cell.row][cell.column] == Life.ALIVE){
+                    var state = Life.DEAD;
+                }else{
+                    var state = Life.ALIVE;
+                }
+                Life.grid[cell.row][cell.column] = state;
+                updateAnimations();
             };
 
-            if (gridCanvas.getContext) {
-                var context = gridCanvas.getContext('2d');
-                var offset = Life.CELL_SIZE;
-
-                for (var x = 0; x <= Life.X; x += Life.CELL_SIZE) {
-                    context.moveTo(0.5 + x, 0);
-                    context.lineTo(0.5 + x, Life.Y);
+            function getCursorPosition(event) {
+                var x;
+                var y;
+                if (event.pageX || event.pageY) {
+                    x = event.pageX;
+                    y = event.pageY;
+                } else {
+                    x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                    y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
                 }
-                for (var y = 0; y <= Life.Y; y += Life.CELL_SIZE) {
-                    context.moveTo(0, 0.5 + y);
-                    context.lineTo(Life.X, 0.5 + y);
-                }
-                context.strokeStyle = "#fff";
-                context.stroke();
 
-                function canvasClickHandler(event) {
-                    var cell = getCursorPosition(event);
-                    if(Life.grid[cell.row][cell.column] == Life.ALIVE){
-                        var state = Life.DEAD;
-                    }else{
-                        var state = Life.ALIVE;
-                    }
-                    Life.grid[cell.row][cell.column] = state;
-                    updateAnimations();
-                };
+                x -= gridCanvas.offsetLeft;
+                y -= gridCanvas.offsetTop;
 
-                function getCursorPosition(event) {
-                    var x;
-                    var y;
-                    if (event.pageX || event.pageY) {
-                        x = event.pageX;
-                        y = event.pageY;
-                    } else {
-                        x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-                        y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-                    }
+                var cell = new Cell(Math.floor(y / Life.CELL_SIZE), Math.floor(x / Life.CELL_SIZE));
+                return cell;
+            };
 
-                    x -= gridCanvas.offsetLeft;
-                    y -= gridCanvas.offsetTop;
-
-                    var cell = new Cell(Math.floor(y / Life.CELL_SIZE), Math.floor(x / Life.CELL_SIZE));
-                    return cell;
-                };
-
-                gridCanvas.addEventListener("click", canvasClickHandler, false);
-            } else {
-                alert("Canvas is unsupported in your browser.");
-            }
+            gridCanvas.addEventListener("click", canvasClickHandler, false);
+        } else {
+            alert("Canvas is unsupported in your browser.");
         }
-    );
+    }
+);
