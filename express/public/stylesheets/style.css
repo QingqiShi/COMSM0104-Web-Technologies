@@ -27,7 +27,8 @@ p, a, span, div, li {
 }
 
 #game_canvas {
-    background-color: #ddd;
+    background-color: #cccccc;
+    margin: 0 auto 0 auto;
 }
 
 /* Main nav bar */

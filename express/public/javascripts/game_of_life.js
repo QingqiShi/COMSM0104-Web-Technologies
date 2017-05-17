@@ -21,12 +21,19 @@ document.addEventListener("DOMContentLoaded", function() {
     var speedUpLink = document.getElementById("speedup");
     var speedDownLink = document.getElementById("speeddown");
     var speedRangeLink = document.getElementById("speed");
+    var saveLink = document.getElementById("save");
+    var loadLink = document.getElementById("load");
+
+
     var width = gridCanvas.width;
     var height = gridCanvas.height;
 
     var Life = {};
+    //for save and load games
+    var savedLife = {};
+    savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
 
-    Life.CELL_SIZE = 14;
+    Life.CELL_SIZE = 8;
     Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
     Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
     Life.WIDTH = Life.X / Life.CELL_SIZE;
@@ -67,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         }
-        Life.copyGrid(nextGenerationGrid, Life.grid);
+        copyGrid(nextGenerationGrid, Life.grid);
         Life.counter++;
     };
 
@@ -86,12 +93,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return total;
     };
-    
-    Life.copyGrid = function(source, destination) {
-        for (var h = 0; h < Life.HEIGHT; h++) {
-            destination[h] = source[h].slice(0);
-        }
-    };
+
+
 
     function Cell(row, column) {
         this.row = row;
@@ -107,13 +110,15 @@ document.addEventListener("DOMContentLoaded", function() {
             Life.state = Life.RUNNING;
         }
     };
-
-    // stop button execution
-    controlLinkStop.onclick = function() {
+    function pause(){
         if(Life.state == Life.RUNNING){
             clearInterval(Life.interval);
             Life.state = Life.STOPPED;
         }
+    };
+    // stop button execution
+    controlLinkStop.onclick = function() {
+        pause();
     };
 
     // clean button execution
@@ -124,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Life.state = Life.STOPPED;
         update();
     };
-
+    //speed up button execution
     speedUpLink.onclick = function() {
         if(Life.state == Life.RUNNING){
             if(Life.DELAY>=100){
@@ -138,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    //speed down button execution
     speedDownLink.onclick = function() {
         if(Life.state == Life.RUNNING){
             if(Life.DELAY<=450){
@@ -163,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     zoomInLink.onclick = function(){
-        if(Life.CELL_SIZE<=22){
+        if(Life.CELL_SIZE<=28){
             Life.CELL_SIZE+=4;
             Life.X = gridCanvas.width-gridCanvas.width%Life.CELL_SIZE;
             Life.Y = gridCanvas.height-gridCanvas.height%Life.CELL_SIZE;
@@ -176,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
     zoomOutLink.onclick = function(){
-        if(Life.CELL_SIZE>=14){
+        if(Life.CELL_SIZE>=12){
             Life.CELL_SIZE-=4;
             Life.X = gridCanvas.width-gridCanvas.width%Life.CELL_SIZE;
             Life.Y = gridCanvas.height-gridCanvas.height%Life.CELL_SIZE;
@@ -188,10 +194,54 @@ document.addEventListener("DOMContentLoaded", function() {
             updateAnimations();
         }
     };
+    //save button execution
+    saveLink.onclick = function(){
+            saveGrid();
+
+    };
+    //load button execution
+    loadLink.onclick = function(){
+            loadGrid();
+            updateAnimations();
+    };
 
     function update() {
         Life.updateState();
         updateAnimations();
+    };
+
+    //copy grid from source to target
+    function copyGrid(source,target){
+        for (var h = 0; h < Life.HEIGHT; h++) {
+            target[h] = source[h].slice(0);
+        }
+    };
+    //save function
+    function saveGrid(){
+        savedLife.CELL_SIZE = Life.CELL_SIZE;
+        savedLife.X = Life.X;
+        savedLife.Y = Life.Y;
+        savedLife.WIDTH = Life.WIDTH;
+        savedLife.HEIGHT = Life.HEIGHT;
+        copyGrid(Life.grid,savedLife.grid);
+
+        for(var i = 0; i < savedLife.WIDTH; i++) {
+            for(var z = 0; z < savedLife.HEIGHT; z++) {
+                console.log(savedLife.grid[z][i]);
+            }
+        }
+    };
+    //load function
+    function loadGrid(){
+        Life.CELL_SIZE = savedLife.CELL_SIZE;
+        Life.X = savedLife.X;
+        Life.Y = savedLife.Y;
+        Life.WIDTH = savedLife.WIDTH;
+        Life.HEIGHT = savedLife.HEIGHT;
+        var context = gridCanvas.getContext('2d');
+        context.clearRect(0, 0, width, height);
+        drawGrid(context);
+        copyGrid(savedLife.grid,Life.grid);
     };
 
     function updateAnimations() {
