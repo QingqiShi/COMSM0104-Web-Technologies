@@ -7,17 +7,6 @@
 {{> nav_bar url="game.html" }}
 
 <div class="content">
-    <p>Notes to Muyu:</p>
-
-    <ul>
-
-        <li><p>Currently included script file (use it): <code>express/public/javascripts/game_of_life.js</code></p></li>
-
-        <li><p>To add more scripts, add them to <code>express/public/javascripts/</code> and don't forget to include them to the top of: <code>express/views/game.hbs</code></p></li>
-
-        <li><p>Below is a <code>canvas</code> tag (with <code>id="game_canvas"</code>) with some basic attributes and styles, fell free to change them. You can change the styles at: <code>express/public/stylesheets/style.css</code>.</p></li>
-
-    </ul>
 
     <div id="container">
 
@@ -38,6 +27,11 @@
             <input id = "speed" type ="range" min = "10" max = "500" step = "49" value = 50>
             <br />
             <br />
+            {{#if user_name}}
+            <a href="#">Save</a>
+            {{else}}
+            <p>Like what you've done? Why not Sign in to save it.</p>
+            {{/if}}
         </div>
 
     </div>
