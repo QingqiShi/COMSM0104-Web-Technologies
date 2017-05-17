@@ -8,6 +8,23 @@ a {
     color: #00B7FF;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #222;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #222;
+    font-weight: 300;
+}
+
+p, a, span, div {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
 #game_canvas {
     background-color: #ddd;
 }
@@ -15,10 +32,10 @@ a {
 /* Main nav bar */
 #main_nav {
     height: 3.5rem;
-    text-align: right;
-    background-color: #000;
-    color: #fff;
     padding: 0 5rem 0 5rem;
+    text-align: right;
+    background-color: #222;
+    color: #fff;
 }
 
 #main_nav a {
@@ -31,21 +48,23 @@ a {
 }
 
 #main_nav a:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #444;
 }
 
 #main_nav .site_name {
+    font-family: 'Lato', sans-serif;
     float: left;
-    line-height: 3.5rem;
-    font-weight: bold;
+    line-height: 3.3rem;
+    padding-bottom: 0.2rem;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 #main_nav span {
     float: left;
     display: inline-block;
     line-height: 3.5rem;
-    margin-left: 1rem;
+    margin-left: 0.2rem;
 }
 
 #user_sign_in_btn, #user_sign_up_btn {
@@ -57,9 +76,12 @@ a {
     padding-right: 1rem;
 }
 
+#user_sign_up_btn {
+    margin-left: 0.2rem;
+}
+
 #user_sign_in_btn:hover, #user_sign_up_btn:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #444;
     cursor: pointer;
 }
 
@@ -71,22 +93,41 @@ a {
 }
 
 /* Start button */
-.start_btn {
-    height: 3rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    text-align: center;
-    background: #481a72;
+.intro_section {
+    padding: 3rem 20% 3rem 20%;
+    background: #f6f6f6;
 }
 
-.start_btn a {
-    font-size: 2.8rem;
-    line-height: 3rem;
-    padding: 1rem 2rem 1rem 2rem;
-    border-radius: 1.5rem;
-    background-color: #fff;
-    color: #481a72;
+.intro_section .words {
+    width: 100%;
+}
+
+.intro_section .words .site_name {
+    font-family: 'Lato', sans-serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: #0e83cd;
+}
+
+.intro_section .words p {
+    font-size: 2rem;
+    font-weight: 100;
+    color: #222;
+}
+
+.intro_section .words a {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    font-size: 1rem;
+    line-height: 2rem;
     text-decoration: none;
+    border: 0.1rem solid #0e83cd;
+    border-radius: 0.5rem;
+    color: #0e83cd;
+}
+
+.intro_section .words a:hover {
+    background: #0e83cd;
+    color: #fff;
 }
 
 /* Footer */
@@ -107,6 +148,18 @@ footer p {
     width: 60%;
     margin: 0 auto 0 auto;
     padding: 3rem 0 3rem 0;
+}
+
+.content h2 {
+    font-size: 2rem;
+}
+
+.content p {
+    font-size: 1.3rem;
+}
+
+.content article {
+    padding-bottom: 3rem;
 }
 
 .multi_column {
@@ -131,13 +184,14 @@ footer p {
     width: 16rem;
     height: 18rem;
     margin-left: -10rem;
-    margin-top: -9rem;
+    margin-top: -10rem;
     background-color: #fff;
     box-shadow: 0 0 5rem #000;
     display: table;
     border-collapse: separate;
     border-spacing: 1rem;
     text-align: center;
+    padding-bottom: 2rem;
 }
 
 .sign_in_pop_up .close, .sign_up_pop_up .close {
@@ -189,21 +243,20 @@ footer p {
 }
 
 input.btn {
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    color: #fff;
-    background-color: #481a72;
-    border: 0;
-    border-radius: 0.3rem;
-    line-height: 1rem;
-    font-size: 0.7rem;
+    -webkit-appearance: none;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-decoration: none;
+    border: 0.1rem solid #0e83cd;
+    border-radius: 0.5rem;
+    color: #0e83cd;
+    background-color: #fff;
 }
 
 input.btn:hover {
-    padding: 0.5rem 1rem 0.5rem 1rem;
     color: #fff;
-    background-color: #000;
-    border: 0;
-    cursor: pointer;
+    background-color: #0e83cd;
 }
 
 .sign_in_pop_up .sign_up_message {
