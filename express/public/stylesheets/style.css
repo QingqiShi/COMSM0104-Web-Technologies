@@ -191,6 +191,11 @@ footer p {
     text-align: center;
 }
 
+.sign_in_pop_up {
+    width: 22rem;
+    margin-left: -11rem;
+}
+
 .sign_in_pop_up .close, .sign_up_pop_up .close {
     position: absolute;
     right: 0;
