@@ -103,6 +103,8 @@ p, a, span, div {
 }
 
 .intro_section .words .site_name {
+    padding: 0;
+    margin: 0;
     font-family: 'Lato', sans-serif;
     font-size: 5rem;
     font-weight: 300;
@@ -154,7 +156,7 @@ footer p {
     font-size: 2rem;
 }
 
-.content p {
+.content p, .content li {
     font-size: 1.3rem;
 }
 
@@ -266,4 +268,45 @@ input.btn:hover {
 .hide {
     display: none;
     visibility: hidden;
+}
+
+/* Game cards */
+.game_card {
+    display: block;
+    background: #f6f6f6;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    color: #222;
+}
+
+.game_card:hover {
+    box-shadow: 0.1rem 0.1rem 1rem #ccc;
+}
+
+.game_card:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.game_card .image {
+    width: 32%;
+    float: left;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.game_card .image img {
+    width: 100%;
+}
+
+.game_card .words {
+    width: 66%;
+    margin-left: 2%;
+    float: right;
+}
+
+.game_card .words article {
+    padding-bottom: 0;
 }
