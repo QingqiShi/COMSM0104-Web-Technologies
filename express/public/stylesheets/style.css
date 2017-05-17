@@ -290,12 +290,14 @@ input.btn:hover {
 
 /* Game cards */
 .game_card {
+    position: relative;
     display: block;
     background: #f6f6f6;
     margin-top: 2rem;
     margin-bottom: 2rem;
     padding: 2rem;
     color: #222;
+    text-decoration: none;
 }
 
 .game_card:hover {
@@ -306,6 +308,17 @@ input.btn:hover {
     content: "";
     display: table;
     clear: both;
+}
+
+.game_card .meta {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0;
+    color: #999;
+}
+
+.game_card .meta span {
+    margin-right: 2rem;
 }
 
 .game_card .image {
