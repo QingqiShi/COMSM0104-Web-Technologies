@@ -171,8 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
     zoomInLink.onclick = function(){
         if(Life.CELL_SIZE<=28){
             Life.CELL_SIZE+=4;
-            Life.X = gridCanvas.width-gridCanvas.width%Life.CELL_SIZE;
-            Life.Y = gridCanvas.height-gridCanvas.height%Life.CELL_SIZE;
+            Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
+            Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
             Life.WIDTH = Life.X / Life.CELL_SIZE;
             Life.HEIGHT = Life.Y / Life.CELL_SIZE;
             var context = gridCanvas.getContext('2d');
@@ -184,8 +184,8 @@ document.addEventListener("DOMContentLoaded", function() {
     zoomOutLink.onclick = function(){
         if(Life.CELL_SIZE>=12){
             Life.CELL_SIZE-=4;
-            Life.X = gridCanvas.width-gridCanvas.width%Life.CELL_SIZE;
-            Life.Y = gridCanvas.height-gridCanvas.height%Life.CELL_SIZE;
+            Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
+            Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
             Life.WIDTH = Life.X / Life.CELL_SIZE;
             Life.HEIGHT = Life.Y / Life.CELL_SIZE;
             var context = gridCanvas.getContext('2d');
