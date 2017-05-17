@@ -243,7 +243,14 @@ document.addEventListener("DOMContentLoaded", function() {
         drawGrid(context);
         copyGrid(savedLife.grid,Life.grid);
     };
-
+    //convert the game data to string for database
+    function gridToString(){
+        return NULL;
+    };
+    //convert string from database to grid to load the game
+    function stringToGrid(){
+        return NULL;
+    };
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
             for (var w = 0; w < Life.WIDTH; w++) {
