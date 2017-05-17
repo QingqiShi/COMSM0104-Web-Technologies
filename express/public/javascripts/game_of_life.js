@@ -245,11 +245,12 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     //convert the game data to string for database
     function gridToString(){
-        return NULL;
+        var string = "To be coded";
+        return string;
     };
     //convert string from database to grid to load the game
     function stringToGrid(){
-        return NULL;
+        
     };
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
