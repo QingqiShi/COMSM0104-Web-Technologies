@@ -14,6 +14,7 @@ var about = require('./routes/about');
 var signin = require('./routes/signin');
 var signup = require('./routes/signup');
 var signout = require('./routes/signout');
+var publish = require('./routes/publish');
 
 var hbs = require('hbs');
 
@@ -67,6 +68,7 @@ app.use('/about.html', about);
 app.use('/signin.html', signin);
 app.use('/signup.html', signup);
 app.use('/signout.html', signout);
+app.use('/publish.html', publish);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

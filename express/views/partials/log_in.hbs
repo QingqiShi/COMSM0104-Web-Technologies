@@ -52,13 +52,13 @@
         </div>
         <form action="/publish.html" method="post">
             <div class="row">
-                <label for="sign_up_user_name">Title</label> <input id="publish_title" type="text" name="publish_title">
+                <label for="publish_title">Title</label> <input id="publish_title" type="text" name="publish_title">
             </div>
             <div class="row">
-                <label for="sign_up_password">Description</label>
+                <label for="publish_description">Description</label>
                 <textarea id="publish_description" name="publish_description"></textarea>
             </div>
-            <input type="hidden" name="game_data" value="">
+            <input id="game_data" type="hidden" name="game_data" value="">
             <input class="btn" type="submit" value="Publish">
         </form>
     </div>
