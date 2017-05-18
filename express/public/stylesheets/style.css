@@ -378,10 +378,47 @@ input.btn:hover {
     height: 50vh;
 }
 
-#start, #stop, #zoomin, #zoomout, #clearLink, #speeddown, #speed, #speedup {
+#start, #stop, #zoomin, #zoomout, #zoom, #clearLink, #speeddown, #speed, #speedup {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: #222;
+    text-decoration: none;
+}
+
+#zoomin, #zoomout, #zoom {
+    top: 3rem;
+}
+
+#speeddown, #speed, #speedup {
+    top: 5rem;
+}
+
+#stop {
+    left: 3rem;
+}
+
+#clearLink {
+    left: 5rem;
+}
+
+#zoom {
+    left: 3rem;
+    width: 5rem;
+}
+
+#zoomin {
+    left: 9rem;
+}
+
+#speed {
+    left: 3rem;
+    width: 5rem;
+}
+
+#speedup {
+    left: 9rem;
 }
 
 #save, #load {
