@@ -53,10 +53,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var sign_in_btn = document.getElementById("user_sign_in_btn");
     var sign_in_close_btn = document.querySelectorAll(".sign_in_pop_up .close")[0];
 
-    sign_in_btn.addEventListener("click", function(){
-        show_class("back_drop");
-        show_class("sign_in_pop_up");
-    });
+    if (sign_in_btn !== null) {
+        sign_in_btn.addEventListener("click", function(){
+            show_class("back_drop");
+            show_class("sign_in_pop_up");
+        });
+    }
 
     sign_in_close_btn.addEventListener("click", function(){
         hide_class("back_drop");
@@ -67,10 +69,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var sign_up_btn = document.getElementById("user_sign_up_btn");
     var sign_up_close_btn = document.querySelectorAll(".sign_up_pop_up .close")[0];
 
-    sign_up_btn.addEventListener("click", function(){
-        show_class("back_drop");
-        show_class("sign_up_pop_up");
-    });
+    if (sign_up_btn !== null) {
+        sign_up_btn.addEventListener("click", function(){
+            show_class("back_drop");
+            show_class("sign_up_pop_up");
+        });
+    }
 
     sign_up_close_btn.addEventListener("click", function(){
         hide_class("back_drop");

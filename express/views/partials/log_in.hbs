@@ -43,4 +43,23 @@
             <input class="btn" type="submit" value="Sign Up">
         </form>
     </div>
+
+    <div class="publish_pop_up hide">
+        <div class="close">x</div>
+        <h2>Publish</h2>
+        <div class="publish_fail hide">
+            Test
+        </div>
+        <form action="/publish.html" method="post">
+            <div class="row">
+                <label for="sign_up_user_name">Title</label> <input id="publish_title" type="text" name="publish_title">
+            </div>
+            <div class="row">
+                <label for="sign_up_password">Description</label>
+                <textarea id="publish_description" name="publish_description"></textarea>
+            </div>
+            <input type="hidden" name="game_data" value="">
+            <input class="btn" type="submit" value="Publish">
+        </form>
+    </div>
 </div>

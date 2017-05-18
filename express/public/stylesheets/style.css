@@ -179,7 +179,7 @@ footer p {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.sign_in_pop_up, .sign_up_pop_up {
+.sign_in_pop_up, .sign_up_pop_up, .publish_pop_up {
     position: fixed;
     width: 26rem;
     margin-left: -13rem;
@@ -195,7 +195,12 @@ footer p {
     margin-left: -11rem;
 }
 
-.sign_in_pop_up .close, .sign_up_pop_up .close {
+.publish_pop_up {
+    width: 30rem;
+    margin-left: -15rem;
+}
+
+.close {
     position: absolute;
     right: 0;
     top: 0;
@@ -205,7 +210,7 @@ footer p {
     text-align: center;
 }
 
-.sign_in_pop_up .close:hover, .sign_up_pop_up .close:hover {
+.close:hover {
     cursor: pointer;
     background-color: #0e83cd;
     color: #fff;
@@ -225,23 +230,23 @@ footer p {
     color: green;
 }
 
-.sign_in_pop_up form, .sign_up_pop_up form {
+.sign_in_pop_up form, .sign_up_pop_up form, .publish_pop_up form {
     text-align: center;
     padding: 2rem;
 }
 
-.sign_in_pop_up .row, .sign_up_pop_up .row {
+.sign_in_pop_up .row, .sign_up_pop_up .row, .publish_pop_up .row {
     width: 100%;
     margin-bottom: 2rem;
 }
 
-.sign_in_pop_up .row:after, .sign_up_pop_up .row:after {
+.sign_in_pop_up .row:after, .sign_up_pop_up .row:after, .publish_pop_up .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-.sign_in_pop_up .row label, .sign_up_pop_up .row label {
+.sign_in_pop_up .row label, .sign_up_pop_up .row label, .publish_pop_up .row label {
     display: block;
     width: 35%;
     float: left;
@@ -249,7 +254,10 @@ footer p {
     line-height: 1.2rem;
 }
 
-.sign_in_pop_up .row input, .sign_up_pop_up .row input {
+.sign_in_pop_up .row input,
+.sign_up_pop_up .row input,
+.publish_pop_up .row input,
+.publish_pop_up .row textarea {
     -webkit-appearance: none;
     display: block;
     padding: 0.2rem;
@@ -259,6 +267,10 @@ footer p {
     float: right;
     border: 1px solid #0e83cd;
     border-radius: 0;
+}
+
+.publish_pop_up .row textarea {
+    height: 5rem;
 }
 
 input.btn {
@@ -340,4 +352,21 @@ input.btn:hover {
 
 .game_card .words article {
     padding-bottom: 0;
+}
+
+/* Game page sign in */
+.game_info .sign_in, .game_info .publish {
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    text-decoration: none;
+    border: 0.1rem solid #0e83cd;
+    border-radius: 0.5rem;
+    color: #0e83cd;
+    background-color: #fff;
+}
+
+.game_info .sign_in:hover, .game_info .publish:hover {
+    color: #fff;
+    background-color: #0e83cd;
 }

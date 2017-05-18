@@ -1,7 +1,6 @@
 {{#extend "scripts"}}
 <script src="/javascripts/game_of_life.js"></script>
-{{!-- Add more scripts here --}}
-
+<script src="/javascripts/save_load.js"></script>
 {{/extend}}
 
 {{> nav_bar url="game.html" }}
@@ -27,13 +26,13 @@
     <div class="game_info">
         <div class="save_message">
             {{#if user_name}}
-            <a href="#">Save</a>
+            <p><a class="publish" href="#">Publish</a> so everyone can see!</p>
             {{else}}
-            <p>Like what you've done? Why not Sign in to save it.</p>
+            <p>Like what you've done? Why not <a class="sign_in" href="#">Sign in</a> to publish it.</p>
             {{/if}}
         </div>
         <div class="game_rules">
-            
+
         </div>
     </div>
 </div>
