@@ -7,7 +7,21 @@ function gridToString(){
 function stringToGrid(){
 
 };
+
+window.addEventListener('resize', function(){
+    var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
+    var canvas = document.getElementById('game_canvas');
+    canvas.setAttribute("width", wrapper.offsetWidth);
+    canvas.setAttribute("height", wrapper.offsetHeight);
+}, true);
+
+
 document.addEventListener("DOMContentLoaded", function() {
+    var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
+    var canvas = document.getElementById('game_canvas');
+    canvas.setAttribute("width", wrapper.offsetWidth);
+    canvas.setAttribute("height", wrapper.offsetHeight);
+
     // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
     Array.matrix = function (m, n, initial) {
         var a, i, j, mat = [];
@@ -323,8 +337,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
                 }
 
-                x -= gridCanvas.offsetLeft;
-                y -= gridCanvas.offsetTop;
+                x -= gridCanvas.offsetLeft + gridCanvas.offsetParent.offsetLeft;
+                y -= gridCanvas.offsetTop + gridCanvas.offsetParent.offsetTop;
+
+                console.log(x + " " + y);
 
                 var cell = new Cell(Math.floor(y / Life.CELL_SIZE), Math.floor(x / Life.CELL_SIZE));
                 return cell;
