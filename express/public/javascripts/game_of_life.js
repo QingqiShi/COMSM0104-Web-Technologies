@@ -1,3 +1,12 @@
+//convert the game data to string for database
+function gridToString(){
+    var string = "To be coded";
+    return string;
+};
+//convert string from database to grid to load the game
+function stringToGrid(){
+
+};
 document.addEventListener("DOMContentLoaded", function() {
     // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
     Array.matrix = function (m, n, initial) {
@@ -110,15 +119,15 @@ document.addEventListener("DOMContentLoaded", function() {
             Life.state = Life.RUNNING;
         }
     };
-    function pause(){
-        if(Life.state == Life.RUNNING){
-            clearInterval(Life.interval);
-            Life.state = Life.STOPPED;
+    function pause(life){
+        if(life.state == life.RUNNING){
+            clearInterval(life.interval);
+            life.state = life.STOPPED;
         }
     };
     // stop button execution
     controlLinkStop.onclick = function() {
-        pause();
+        pause(Life);
     };
 
     // clean button execution
@@ -250,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     //convert string from database to grid to load the game
     function stringToGrid(){
-        
+
     };
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
