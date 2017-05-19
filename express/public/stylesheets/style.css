@@ -31,7 +31,7 @@ p, a, span, div, li {
     margin: 0 auto 0 auto;
 }
 
-#game_data {
+#loaded_data {
     display: none;
 }
 
