@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     context.fillStyle = "#262626";
 
                 } else {
-                    context.fillStyle = "#cccccc";
+                    context.fillStyle = "#f6f6f6";
                     //context.clearRect();
                 }
                 context.fillRect(
@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 context.moveTo(0, 0.5 + y);
                 context.lineTo(Life.X, 0.5 + y);
             }
-            context.strokeStyle = "#f6f6f6";
+            context.strokeStyle = "#cccccc";
             context.stroke();
         };
         if (gridCanvas.getContext) {
