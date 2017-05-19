@@ -31,6 +31,10 @@ p, a, span, div, li {
     margin: 0 auto 0 auto;
 }
 
+#game_data {
+    display: none;
+}
+
 /* Main nav bar */
 #main_nav {
     height: 3.5rem;
