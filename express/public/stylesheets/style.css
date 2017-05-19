@@ -29,7 +29,7 @@ p, a, span, div, li {
 #game_canvas {
     background-color: #f6f6f6;
     margin: 0 auto 0 auto;
-    box-shadow: 0 0.5rem 2rem #ddd;
+    box-shadow: 0 0.2rem 2rem #ddd;
 }
 
 #loaded_data {
@@ -60,6 +60,10 @@ p, a, span, div, li {
     padding-right: 1rem;
     text-decoration: none;
     color: #fff;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 #main_nav a:hover {
@@ -89,6 +93,11 @@ p, a, span, div, li {
     margin-left: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 #user_sign_up_btn {
@@ -138,6 +147,11 @@ p, a, span, div, li {
     border: 0.1rem solid #0e83cd;
     border-radius: 0.5rem;
     color: #0e83cd;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .intro_section .words a:hover {
@@ -221,6 +235,11 @@ footer p {
     line-height: 1rem;
     width: 1rem;
     text-align: center;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .close:hover {
@@ -296,6 +315,11 @@ input.btn {
     border-radius: 0.5rem;
     color: #0e83cd;
     background-color: #fff;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 input.btn:hover {
@@ -323,10 +347,15 @@ input.btn:hover {
     padding: 2rem;
     color: #222;
     text-decoration: none;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .game_card:hover {
-    box-shadow: 0.1rem 0.1rem 1rem #ccc;
+    box-shadow: 0 0.2rem 1rem #ddd;
 }
 
 .game_card:after {
@@ -377,6 +406,11 @@ input.btn:hover {
     border-radius: 0.5rem;
     color: #0e83cd;
     background-color: #fff;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .game_info .sign_in:hover, .game_info .publish:hover {
