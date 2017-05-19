@@ -1,3 +1,30 @@
+//save function
+function save_local(life,savedlife){
+    savedlife.CELL_SIZE = life.CELL_SIZE;
+    savedlife.X = life.X;
+    savedlife.Y = life.Y;
+    savedlife.WIDTH = life.WIDTH;
+    savedlife.HEIGHT = life.HEIGHT;
+    copyGrid(life.grid,savedlife.grid);
+
+    for(var i = 0; i < savedlife.WIDTH; i++) {
+        for(var z = 0; z < savedlife.HEIGHT; z++) {
+            console.log(savedlife.grid[z][i]);
+        }
+    }
+};
+//load function
+function load_local(life,savedLife){
+    life.CELL_SIZE = savedlife.CELL_SIZE;
+    life.X = savedlife.X;
+    life.Y = savedlife.Y;
+    life.WIDTH = savedlife.WIDTH;
+    life.HEIGHT = savedlife.HEIGHT;
+    var context = gridCanvas.getContext('2d');
+    context.clearRect(0, 0, width, height);
+    drawGrid(context);
+    copyGrid(savedlife.grid,life.grid);
+};
 function initialiseObject(object, cellSize, canvas){
 
     object.CELL_SIZE = cellSize;
@@ -78,7 +105,7 @@ Array.matrix = function (m, n, initial) {
     return mat;
 };
 var Life = {};
-
+var savedLife = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
@@ -98,8 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var speedUpLink = document.getElementById("speedup");
     var speedDownLink = document.getElementById("speeddown");
     var speedRangeLink = document.getElementById("speed");
-    var saveLink = document.getElementById("save");
-    var loadLink = document.getElementById("load");
+
     var loadedValue = document.getElementById('loaded_data').innerHTML;
     loadedValue = loadedValue.toString();
     console.log(loadedValue);
@@ -108,10 +134,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var width = gridCanvas.width;
     var height = gridCanvas.height;
 
-    //for save and load games
-    var savedLife = {};
-    savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
+    //initialise objects
     initialiseObject(Life,8,gridCanvas);
+    savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
 
     if(loadedValue != ""){
         stringToGrid(loadedValue,Life);
@@ -272,16 +297,8 @@ document.addEventListener("DOMContentLoaded", function() {
             updateAnimations();
         }
     };
-    //save button execution
-    saveLink.onclick = function(){
-            saveGrid();
 
-    };
-    //load button execution
-    loadLink.onclick = function(){
-            loadGrid();
-            updateAnimations();
-    };
+
 
     function update() {
         Life.updateState();
@@ -307,33 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     };
-    //save function
-    function saveGrid(){
-        savedLife.CELL_SIZE = Life.CELL_SIZE;
-        savedLife.X = Life.X;
-        savedLife.Y = Life.Y;
-        savedLife.WIDTH = Life.WIDTH;
-        savedLife.HEIGHT = Life.HEIGHT;
-        copyGrid(Life.grid,savedLife.grid);
 
-        for(var i = 0; i < savedLife.WIDTH; i++) {
-            for(var z = 0; z < savedLife.HEIGHT; z++) {
-                console.log(savedLife.grid[z][i]);
-            }
-        }
-    };
-    //load function
-    function loadGrid(){
-        Life.CELL_SIZE = savedLife.CELL_SIZE;
-        Life.X = savedLife.X;
-        Life.Y = savedLife.Y;
-        Life.WIDTH = savedLife.WIDTH;
-        Life.HEIGHT = savedLife.HEIGHT;
-        var context = gridCanvas.getContext('2d');
-        context.clearRect(0, 0, width, height);
-        drawGrid(context);
-        copyGrid(savedLife.grid,Life.grid);
-    };
 
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
