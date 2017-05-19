@@ -5,7 +5,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('data.db');
 
 var validate_data = function (data) {
-    return false;
+    return true;
 }
 
 /* Post sign in. */

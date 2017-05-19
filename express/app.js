@@ -60,6 +60,16 @@ hbs.registerHelper('block', function(name) {
     return val;
 });
 
+hbs.registerHelper("formatDate", function(datetime, format) {
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    var d = new Date();
+    d.setTime(datetime);
+
+    var n = d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+    return n;
+});
+
 app.use('/', index);
 app.use('/index.html', index);
 app.use('/game.html', game);

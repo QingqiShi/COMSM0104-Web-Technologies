@@ -3,7 +3,7 @@ var game_pause = function () {
 }
 
 var game_convert = function () {
-    return "testing";
+    return "C8X1600Y800L1,1/1,2/1,3/E";
 }
 
 document.addEventListener("DOMContentLoaded", function() {

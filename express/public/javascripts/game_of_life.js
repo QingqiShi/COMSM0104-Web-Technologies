@@ -1,6 +1,6 @@
 //convert the game data to string for database
 function gridToString(){
-    var string = "To be coded";
+    var string = "C8X1600Y800L1,1/1,2/1,3/E";
     return string;
 };
 //convert string from database to grid to load the game

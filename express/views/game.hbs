@@ -6,8 +6,6 @@
 {{> nav_bar url="game.html" }}
 
 <div class="content">
-    <p>Generation counter: <span id="counter">0</span></p>
-
     <div class="on_canvas_controls">
         <canvas id="game_canvas" width="800" height="400"></canvas>
         <a id="start" href="javascript:void(0)">▶</a>
@@ -25,6 +23,7 @@
 
 
     <div class="game_info">
+        <p>Generation counter: <span id="counter">0</span></p>
         <div class="save_message">
             {{#if user_name}}
             <p><a class="publish" href="#">Publish</a> so everyone can see!</p>

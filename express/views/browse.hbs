@@ -2,50 +2,24 @@
 {{> nav_bar url="browse.html" }}
 
 <div class="content">
-    <a class="game_card" href="game.html?game_id=1">
+{{#each game_states}}
+    <a class="game_card" href="game.html?game_id={{game_id}}">
         <div class="meta">
-            #<span class="id">1</span> Date: <span class="date">17 May 2017</span> Created by: <span class="play_num">ukstone</span>
+            #<span class="id">{{game_id}}</span> Date: <span class="date">{{formatDate game_date "DD MMMM - YYYY"}} </span> Created by: <span class="play_num">{{user_name}}</span>
         </div>
         <div class="image">
             <img src="http://placehold.it/350x350?text=Place+Holder" alt="Thumbnail">
         </div>
         <div class="words">
             <article class="game_description">
-                <h2 class="game_name">The very cool game</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                <h2 class="game_name">{{game_name}}</h2>
+                <p>{{game_desc}}</p>
             </article>
         </div>
     </a>
-
-    <a class="game_card" href="game.html?game_id=2">
-        <div class="meta">
-            #<span class="id">2</span> Date: <span class="date">17 May 2017</span> Created by: <span class="play_num">qingqishi</span>
-        </div>
-        <div class="image">
-            <img src="http://placehold.it/350x350?text=Place+Holder" alt="Thumbnail">
-        </div>
-        <div class="words">
-            <article class="game_description">
-                <h2 class="game_name">Another very cool game</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-            </article>
-        </div>
-    </a>
-
-    <a class="game_card" href="game.html?game_id=2">
-        <div class="meta">
-            #<span class="id">3</span> Date: <span class="date">17 May 2017</span> Created by: <span class="play_num">muyuyang</span>
-        </div>
-        <div class="image">
-            <img src="http://placehold.it/350x350?text=Place+Holder" alt="Thumbnail">
-        </div>
-        <div class="words">
-            <article class="game_description">
-                <h2 class="game_name">More games</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-            </article>
-        </div>
-    </a>
+{{else}}
+    <h2 class="empty">No published games, publish your own <a href="game.html">here</a>!</h2>
+{{/each}}
 </div>
 
 
