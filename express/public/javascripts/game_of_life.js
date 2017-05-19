@@ -3,17 +3,59 @@ function gridToString(){
     var string = "C8X1600Y800L1,1/1,2/1,3/E";
     return string;
 };
-//convert string from database to grid to load the game
-function stringToGrid(){
+function initialiseObject(object, cellSize, canvas){
 
+    object.CELL_SIZE = cellSize;
+    object.X = (canvas.width-canvas.width%object.CELL_SIZE)*2;
+    object.Y = (canvas.height-canvas.height%object.CELL_SIZE)*2;
+    object.WIDTH = object.X / object.CELL_SIZE;
+    object.HEIGHT = object.Y / object.CELL_SIZE;
+    object.DEAD = 0;
+    object.ALIVE = 1;
+    object.DELAY = 500;
+    object.STOPPED = 0;
+    object.RUNNING = 1;
+
+    object.minimum = 2;
+    object.maximum = 3;
+    object.spawn = 3;
+
+    object.state = object.STOPPED;
+    object.interval = null;
+
+    object.grid = Array.matrix(object.HEIGHT, object.WIDTH, 0);
+
+    object.counter = 0;
 };
+//convert string from database to grid to load the game
+function stringToGrid(str,object){
+    object.CELL_SIZE = parseInt(str.substring(str.indexOf("C")+1,str.indexOf("X")));
+    object.X = parseInt(str.substring(str.indexOf("X")+1,str.indexOf("Y")));
+    object.Y = parseInt(str.substring(str.indexOf("Y")+1,str.indexOf("L")));
+    object.WIDTH = object.X / object.CELL_SIZE;
+    object.HEIGHT = object.Y / object.CELL_SIZE;
+    var coord = str.slice(str.indexOf("L")+1);
+    object.grid = Array.matrix(object.Y, object.X, 0);
 
-window.addEventListener('resize', function(){
-    var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
-    var canvas = document.getElementById('game_canvas');
-    canvas.setAttribute("width", wrapper.offsetWidth);
-    canvas.setAttribute("height", wrapper.offsetHeight);
-}, true);
+    while(!coord.startsWith("E")){
+        var coords = coord.substring(0,coord.indexOf("/"));
+        var loc = coords.split(",");
+        object.grid[parseInt(loc[0])][parseInt(loc[1])] = 1;
+        coord = coord.slice(coord.indexOf("/")+1);
+    }
+};
+Array.matrix = function (m, n, initial) {
+    var a, i, j, mat = [];
+    for (i = 0; i < m; i += 1) {
+        a = [];
+        for (j = 0; j < n; j += 1) {
+            a[j] = 0;
+        }
+        mat[i] = a;
+    }
+    return mat;
+};
+var Life = {};
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -23,17 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.setAttribute("height", wrapper.offsetHeight);
 
     // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
-    Array.matrix = function (m, n, initial) {
-        var a, i, j, mat = [];
-        for (i = 0; i < m; i += 1) {
-            a = [];
-            for (j = 0; j < n; j += 1) {
-                a[j] = 0;
-            }
-            mat[i] = a;
-        }
-        return mat;
-    };
+
     var gridCanvas = document.getElementById('game_canvas');
     var counterSpan = document.getElementById("counter");
     var controlLinkStart = document.getElementById("start");
@@ -48,35 +80,22 @@ document.addEventListener("DOMContentLoaded", function() {
     var loadLink = document.getElementById("load");
 
 
+
+
     var width = gridCanvas.width;
     var height = gridCanvas.height;
 
-    var Life = {};
     //for save and load games
     var savedLife = {};
     savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
+    initialiseObject(Life,8,gridCanvas);
+    stringToGrid(gridToString(),Life);
+    var context = gridCanvas.getContext('2d');
+    context.clearRect(0, 0, width, height);
+    drawGrid(context);
+    updateAnimations();
+    console.log(gridToString());
 
-    Life.CELL_SIZE = 8;
-    Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
-    Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
-    Life.WIDTH = Life.X / Life.CELL_SIZE;
-    Life.HEIGHT = Life.Y / Life.CELL_SIZE;
-    Life.DEAD = 0;
-    Life.ALIVE = 1;
-    Life.DELAY = 500;
-    Life.STOPPED = 0;
-    Life.RUNNING = 1;
-
-    Life.minimum = 2;
-    Life.maximum = 3;
-    Life.spawn = 3;
-
-    Life.state = Life.STOPPED;
-    Life.interval = null;
-
-    Life.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
-
-    Life.counter = 0;
 
     Life.updateState = function() {
         var neighbours;
@@ -117,7 +136,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return total;
     };
 
+    window.addEventListener('resize', function(){
+        var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
+        var canvas = document.getElementById('game_canvas');
+        canvas.setAttribute("width", wrapper.offsetWidth);
+        canvas.setAttribute("height", wrapper.offsetHeight);
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, width, height);
+        drawGrid(context);
+        copyGrid(savedLife.grid,Life.grid);
+        updateAnimations();
 
+    }, true);
 
     function Cell(row, column) {
         this.row = row;
@@ -235,8 +265,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //copy grid from source to target
     function copyGrid(source,target){
-        for (var h = 0; h < Life.HEIGHT; h++) {
-            target[h] = source[h].slice(0);
+        // for (var h = 0; h < target.length; h++) {
+        //     target[h] = source[h].slice(0);
+        // }
+        var height = Math.min(target.length,source.length);
+
+
+        for(var h = 0; h < height; h++) {
+            var targets = target[h];
+            var width1 = target[h];
+            var width2 = source[h];
+            var width = Math.min(width1.length,width1.length);
+            for(var w = 0; w < width; w++) {
+                target[h][w] = source[h][w];
+
+            }
         }
     };
     //save function
@@ -266,15 +309,7 @@ document.addEventListener("DOMContentLoaded", function() {
         drawGrid(context);
         copyGrid(savedLife.grid,Life.grid);
     };
-    //convert the game data to string for database
-    function gridToString(){
-        var string = "To be coded";
-        return string;
-    };
-    //convert string from database to grid to load the game
-    function stringToGrid(){
-
-    };
+    
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
             for (var w = 0; w < Life.WIDTH; w++) {
