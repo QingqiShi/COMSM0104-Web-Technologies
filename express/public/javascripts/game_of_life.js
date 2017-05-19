@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     window.addEventListener('resize', function(){
+        saveGrid();
         var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
         var canvas = document.getElementById('game_canvas');
         canvas.setAttribute("width", wrapper.offsetWidth);
@@ -203,7 +204,33 @@ document.addEventListener("DOMContentLoaded", function() {
         updateAnimations();
 
     }, true);
+    //save function
+        function saveGrid(){
+            savedLife.CELL_SIZE = Life.CELL_SIZE;
+            savedLife.X = Life.X;
+            savedLife.Y = Life.Y;
+            savedLife.WIDTH = Life.WIDTH;
+            savedLife.HEIGHT = Life.HEIGHT;
+            copyGrid(Life.grid,savedLife.grid);
 
+            for(var i = 0; i < savedLife.WIDTH; i++) {
+                for(var z = 0; z < savedLife.HEIGHT; z++) {
+                    console.log(savedLife.grid[z][i]);
+                }
+            }
+        };
+        //load function
+        function loadGrid(){
+            Life.CELL_SIZE = savedLife.CELL_SIZE;
+            Life.X = savedLife.X;
+            Life.Y = savedLife.Y;
+            Life.WIDTH = savedLife.WIDTH;
+            Life.HEIGHT = savedLife.HEIGHT;
+            var context = gridCanvas.getContext('2d');
+            context.clearRect(0, 0, width, height);
+            drawGrid(context);
+            copyGrid(savedLife.grid,Life.grid);
+        };
     function Cell(row, column) {
         this.row = row;
         this.column = column;
