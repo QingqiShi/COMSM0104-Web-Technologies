@@ -425,24 +425,11 @@ input.btn:hover {
     height: 70vh;
 }
 
-.control_back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 11.5rem;
-    height: 7.5rem;
-    line-height: 1rem;
-    background-color: rgba(0,0,0,0.3);
-    -webkit-box-shadow: 0.2rem 0.2rem 1rem #ccc;
-    box-shadow: 0.2rem 0.2rem 1rem #ccc;
-}
-
 .active {
     color: #0e83cd !important;
-    text-shadow: 0 0 0.2rem #0e83cd;
 }
 
-#start, #stop, #zoomin, #zoomout, #zoom, #clearLink, #speeddown, #speed, #speedup {
+#start, #stop, #clearLink {
     position: absolute;
     top: 0.5rem;
     left: 1rem;
@@ -451,38 +438,43 @@ input.btn:hover {
     text-decoration: none;
 }
 
-#zoomin, #zoomout, #zoom {
-    top: 3rem;
-}
-
-#speeddown, #speed, #speedup {
-    top: 5rem;
-}
-
 #stop {
     left: 3rem;
 }
 
 #clearLink {
-    left: 9rem;
+    left: 5.2rem;
+}
+
+#zoomin, #zoomout, #zoom, #speeddown, #speed, #speedup {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #222;
+    text-decoration: none;
 }
 
 #zoom {
-    left: 3rem;
+    right: 3rem;
     width: 5rem;
 }
 
-#zoomin {
-    left: 9rem;
-}
-
-#speed {
-    left: 3rem;
-    width: 5rem;
+#zoomout {
+    right: 9rem;
 }
 
 #speedup {
-    left: 9rem;
+    right: 13rem;
+}
+
+#speed {
+    right: 15rem;
+    width: 5rem;
+}
+
+#speeddown {
+    right: 21rem;
 }
 
 #save, #load {
