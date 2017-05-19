@@ -6,6 +6,16 @@
 {{> nav_bar url="game.html" }}
 
 <div class="content">
+    <div class="game_info">
+        <div class="save_message">
+            {{#if user_name}}
+            <p><a class="publish" href="#">Publish</a> so everyone can see!</p>
+            {{else}}
+            <p>Like what you've done? Why not <a class="sign_in" href="#">Sign in</a> to publish it.</p>
+            {{/if}}
+        </div>
+    </div>
+
     <div class="on_canvas_controls">
         <div id="loaded_data">{{game_data}}</div>
         <canvas id="game_canvas" width="800" height="400"></canvas>
@@ -24,16 +34,16 @@
 
 
     <div class="game_info">
-        <p>Generation counter: <span id="counter">0</span></p>
-        <div class="save_message">
-            {{#if user_name}}
-            <p><a class="publish" href="#">Publish</a> so everyone can see!</p>
-            {{else}}
-            <p>Like what you've done? Why not <a class="sign_in" href="#">Sign in</a> to publish it.</p>
-            {{/if}}
-        </div>
+        <p class="generation_counter">Generation counter: <span id="counter">0</span></p>
         <div class="game_rules">
-
+            <h2>Rules</h2>
+            <p>Each cell of the grid is in one of two possible states, alive or dead, or "populated" or "unpopulated". Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:</p>
+            <ol>
+                <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+                <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+            </ol>
         </div>
     </div>
 </div>

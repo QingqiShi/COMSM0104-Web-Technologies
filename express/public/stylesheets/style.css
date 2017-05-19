@@ -27,11 +27,15 @@ p, a, span, div, li {
 }
 
 #game_canvas {
-    background-color: #cccccc;
+    background-color: #f6f6f6;
     margin: 0 auto 0 auto;
 }
 
 #loaded_data {
+    display: none;
+}
+
+.generation_counter {
     display: none;
 }
 
