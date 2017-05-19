@@ -1,30 +1,35 @@
 //save function
-function save_local(life,savedlife){
-    savedlife.CELL_SIZE = life.CELL_SIZE;
-    savedlife.X = life.X;
-    savedlife.Y = life.Y;
-    savedlife.WIDTH = life.WIDTH;
-    savedlife.HEIGHT = life.HEIGHT;
-    copyGrid(life.grid,savedlife.grid);
+function save_local(object){
+        if (typeof(Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            var grid = gridToString(object);
+            localStorage.setItem("lastGrid", grid);
 
-    for(var i = 0; i < savedlife.WIDTH; i++) {
-        for(var z = 0; z < savedlife.HEIGHT; z++) {
-            console.log(savedlife.grid[z][i]);
+        } else {
+            // Sorry! No Web Storage support..
+            alert("Web storage is unsupported in your browser.");
+
         }
-    }
-};
-//load function
-function load_local(life,savedLife){
-    life.CELL_SIZE = savedlife.CELL_SIZE;
-    life.X = savedlife.X;
-    life.Y = savedlife.Y;
-    life.WIDTH = savedlife.WIDTH;
-    life.HEIGHT = savedlife.HEIGHT;
-    var context = gridCanvas.getContext('2d');
-    context.clearRect(0, 0, width, height);
-    drawGrid(context);
-    copyGrid(savedlife.grid,life.grid);
-};
+    };
+    function load_local(object){
+        if (typeof(Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            if(localStorage.getItem("lastGrid") != null){
+                if(localStorage.lastGrid.toString()!=""){
+                    stringToGrid(localStorage.lastGrid.toString(),Life);
+                    var context = gridCanvas.getContext('2d');
+                    context.clearRect(0, 0, width, height);
+                    drawGrid(context);
+                    updateAnimations();
+                    console.log(testString);
+                }
+            }
+        } else {
+            // Sorry! No Web Storage support..
+            alert("Web storage is unsupported in your browser.");
+
+        }
+    };
 function initialiseObject(object, cellSize, canvas){
 
     object.CELL_SIZE = cellSize;
