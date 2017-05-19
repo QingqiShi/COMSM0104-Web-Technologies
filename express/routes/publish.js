@@ -43,11 +43,11 @@ router.post('/', function(req, res, next) {
             var result = "";
             if (err === null) {
                 result = "SUCCESS";
+                res.redirect("game.html?game_id=" + this.lastID + "&publish_result=" + result);
             } else {
                 result = "FAILED";
+                res.redirect("game.html?publish_result=" + result);
             }
-
-            res.redirect("game.html?publish_result=" + result);
         }
     );
 
