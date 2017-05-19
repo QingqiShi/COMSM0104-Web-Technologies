@@ -1,8 +1,3 @@
-//convert the game data to string for database
-function gridToString(){
-    var string = "C8X1600Y800L1,1/1,2/1,3/E";
-    return string;
-};
 function initialiseObject(object, cellSize, canvas){
 
     object.CELL_SIZE = cellSize;
@@ -78,8 +73,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var speedRangeLink = document.getElementById("speed");
     var saveLink = document.getElementById("save");
     var loadLink = document.getElementById("load");
-
-
+    var loadedValue = document.getElementById('loaded_data').innerHTML;
+    loadedValue = loadedValue.toString();
+    console.log(loadedValue);
 
 
     var width = gridCanvas.width;
@@ -89,7 +85,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var savedLife = {};
     savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
     initialiseObject(Life,8,gridCanvas);
-    // stringToGrid(gridToString(),Life);
+
+    if(loadedValue != ""){
+        stringToGrid(loadedValue,Life);
+    }
     var context = gridCanvas.getContext('2d');
     context.clearRect(0, 0, width, height);
     drawGrid(context);
