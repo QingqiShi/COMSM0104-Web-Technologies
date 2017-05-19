@@ -366,6 +366,16 @@ document.addEventListener("DOMContentLoaded", function() {
             var offset = Life.CELL_SIZE;
             drawGrid(context);
 
+            var mouseDownFlag = false;
+
+            function canvasHoldHandler(event) {
+                if (mouseDownFlag) {
+                    var cell = getCursorPosition(event);
+                    Life.grid[cell.row][cell.column] = Life.ALIVE;
+                    updateAnimations();
+                }
+            };
+
             function canvasClickHandler(event) {
                 var cell = getCursorPosition(event);
                 if(Life.grid[cell.row][cell.column] == Life.ALIVE){
@@ -398,6 +408,13 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             gridCanvas.addEventListener("click", canvasClickHandler, false);
+            gridCanvas.addEventListener("mousedown", function() {
+                mouseDownFlag = true;
+            }, false);
+            gridCanvas.addEventListener("mouseup", function() {
+                mouseDownFlag = false;
+            }, false);
+            gridCanvas.addEventListener("mousemove", canvasHoldHandler, false);
         } else {
             alert("Canvas is unsupported in your browser.");
         }
