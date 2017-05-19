@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 context.moveTo(0, 0.5 + y);
                 context.lineTo(Life.X, 0.5 + y);
             }
-            context.strokeStyle = "#fff";
+            context.strokeStyle = "#f6f6f6";
             context.stroke();
         };
         if (gridCanvas.getContext) {
