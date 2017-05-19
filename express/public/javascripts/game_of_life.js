@@ -89,12 +89,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var savedLife = {};
     savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
     initialiseObject(Life,8,gridCanvas);
-    stringToGrid(gridToString(),Life);
+    // stringToGrid(gridToString(),Life);
     var context = gridCanvas.getContext('2d');
     context.clearRect(0, 0, width, height);
     drawGrid(context);
     updateAnimations();
-    console.log(gridToString());
 
 
     Life.updateState = function() {
@@ -309,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function() {
         drawGrid(context);
         copyGrid(savedLife.grid,Life.grid);
     };
-    
+
     function updateAnimations() {
         for (var h = 0; h < Life.HEIGHT; h++) {
             for (var w = 0; w < Life.WIDTH; w++) {
