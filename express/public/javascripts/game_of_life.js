@@ -213,11 +213,6 @@ document.addEventListener("DOMContentLoaded", function() {
             savedLife.HEIGHT = Life.HEIGHT;
             copyGrid(Life.grid,savedLife.grid);
 
-            for(var i = 0; i < savedLife.WIDTH; i++) {
-                for(var z = 0; z < savedLife.HEIGHT; z++) {
-                    console.log(savedLife.grid[z][i]);
-                }
-            }
         };
         //load function
         function loadGrid(){
@@ -395,7 +390,6 @@ document.addEventListener("DOMContentLoaded", function() {
             for (var x = 0; x <= Life.X; x += Life.CELL_SIZE) {
                 context.moveTo(0.5 + x, 0);
                 context.lineTo(0.5 + x, Life.Y);
-                console.log(Life.CELL_SIZE);
 
             }
             for (var y = 0; y <= Life.Y; y += Life.CELL_SIZE) {
