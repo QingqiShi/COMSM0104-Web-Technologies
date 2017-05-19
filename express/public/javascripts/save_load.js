@@ -4,35 +4,9 @@ var game_pause = function (life) {
         life.state = life.STOPPED;
     }
 }
-function gridToString(object){
-    var string = "C";
-    //the first value is CELL_SIZE
-    string = string.concat(object.CELL_SIZE.toString());
-    string = string.concat("X");
-    //second is X
-    string = string.concat(object.X.toString());
-    string = string.concat("Y");
-    //third is Y
-    string = string.concat(object.Y.toString());
-    string = string.concat("L");
-    //the remainings are the coordinates of the cells that have state of ALIVE
-    for(var i = 0; i < object.WIDTH; i++) {
-            for(var z = 0; z < object.HEIGHT; z++) {
-                if(object.grid[z][i]==object.ALIVE){
-                    var xCoord = z;
-                    var yCoord = i;
-                    var tempS = "";
-                    tempS = tempS.concat(xCoord.toString(),",",yCoord.toString());
-                    string = string.concat(tempS);
-                    string = string.concat("/");
-                }
-            }
-        }
-    string = string.concat("E");
-    return string;
-};
-var game_convert = function () {
-    return "C8X1600Y800L1,1/1,2/1,3/E";
+
+var game_convert = function (life) {
+    return gridToString(life);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -57,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (publish_btn !== null && typeof publish_btn != 'undefined') {
         publish_btn.addEventListener("click", function(){
             game_pause(Life);
-            var data = gridToString(Life);
-            // var data = game_convert();
+            var data = game_convert(Life);
 
             var game_data_field = document.getElementById("game_data");
             game_data_field.setAttribute("value", data);

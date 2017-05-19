@@ -39,6 +39,33 @@ function stringToGrid(str,object){
         coord = coord.slice(coord.indexOf("/")+1);
     }
 };
+function gridToString(object){
+    var string = "C";
+    //the first value is CELL_SIZE
+    string = string.concat(object.CELL_SIZE.toString());
+    string = string.concat("X");
+    //second is X
+    string = string.concat(object.X.toString());
+    string = string.concat("Y");
+    //third is Y
+    string = string.concat(object.Y.toString());
+    string = string.concat("L");
+    //the remainings are the coordinates of the cells that have state of ALIVE
+    for(var i = 0; i < object.WIDTH; i++) {
+            for(var z = 0; z < object.HEIGHT; z++) {
+                if(object.grid[z][i]==object.ALIVE){
+                    var xCoord = z;
+                    var yCoord = i;
+                    var tempS = "";
+                    tempS = tempS.concat(xCoord.toString(),",",yCoord.toString());
+                    string = string.concat(tempS);
+                    string = string.concat("/");
+                }
+            }
+        }
+    string = string.concat("E");
+    return string;
+};
 Array.matrix = function (m, n, initial) {
     var a, i, j, mat = [];
     for (i = 0; i < m; i += 1) {
