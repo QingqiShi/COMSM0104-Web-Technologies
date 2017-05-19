@@ -239,6 +239,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // start button execution
     controlLinkStart.onclick = function() {
         if(Life.state == Life.STOPPED){
+            if (controlLinkStop.classList.contains("active")) {
+                controlLinkStop.classList.remove("active");
+            }
+            if (!controlLinkStart.classList.contains("active")) {
+                controlLinkStart.classList.add("active");
+            }
             Life.interval = setInterval(function() {
                 update();
             }, Life.DELAY);
@@ -247,6 +253,12 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     function pause(life){
         if(life.state == life.RUNNING){
+            if (controlLinkStart.classList.contains("active")) {
+                controlLinkStart.classList.remove("active");
+            }
+            if (!controlLinkStop.classList.contains("active")) {
+                controlLinkStop.classList.add("active");
+            }
             clearInterval(life.interval);
             life.state = life.STOPPED;
         }

@@ -1,5 +1,13 @@
 var game_pause = function (life) {
     if(life.state == life.RUNNING){
+        var controlLinkStart = document.getElementById("start");
+        var controlLinkStop = document.getElementById("stop");
+        if (controlLinkStart.classList.contains("active")) {
+            controlLinkStart.classList.remove("active");
+        }
+        if (!controlLinkStop.classList.contains("active")) {
+            controlLinkStop.classList.add("active");
+        }
         clearInterval(life.interval);
         life.state = life.STOPPED;
     }

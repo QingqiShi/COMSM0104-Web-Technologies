@@ -425,9 +425,26 @@ input.btn:hover {
     height: 70vh;
 }
 
+.control_back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 11.5rem;
+    height: 7.5rem;
+    line-height: 1rem;
+    background-color: rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0.2rem 0.2rem 1rem #ccc;
+    box-shadow: 0.2rem 0.2rem 1rem #ccc;
+}
+
+.active {
+    color: #0e83cd !important;
+    text-shadow: 0 0 0.2rem #0e83cd;
+}
+
 #start, #stop, #zoomin, #zoomout, #zoom, #clearLink, #speeddown, #speed, #speedup {
     position: absolute;
-    top: 1rem;
+    top: 0.5rem;
     left: 1rem;
     font-size: 1.5rem;
     color: #222;
@@ -447,7 +464,7 @@ input.btn:hover {
 }
 
 #clearLink {
-    left: 5rem;
+    left: 9rem;
 }
 
 #zoom {
