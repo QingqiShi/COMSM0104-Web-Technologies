@@ -265,6 +265,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // clean button execution
     clearLink.onclick = function() {
+        if (controlLinkStart.classList.contains("active")) {
+            controlLinkStart.classList.remove("active");
+        }
+        if (!controlLinkStop.classList.contains("active")) {
+            controlLinkStop.classList.add("active");
+        }
         Life.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
         Life.counter = 0;
         clearInterval(Life.interval);
