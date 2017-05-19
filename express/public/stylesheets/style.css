@@ -29,7 +29,7 @@ p, a, span, div, li {
 #game_canvas {
     background-color: #f6f6f6;
     margin: 0 auto 0 auto;
-    box-shadow: 0 0.5rem 2rem #eee;
+    box-shadow: 0 0.5rem 2rem #ddd;
 }
 
 #loaded_data {

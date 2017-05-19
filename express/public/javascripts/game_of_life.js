@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function() {
         for (var h = 0; h < Life.HEIGHT; h++) {
             for (var w = 0; w < Life.WIDTH; w++) {
                 if (Life.grid[h][w] === Life.ALIVE) {
-                    context.fillStyle = "#262626";
+                    context.fillStyle = "#555";
 
                 } else {
                     context.fillStyle = "#f6f6f6";
