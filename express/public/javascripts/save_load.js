@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 show_class("publish_fail");
                 document.getElementsByClassName("publish_fail")[0].innerHTML = "Publish failed: database error";
                 break;
+            case "SUCCESS":
+                hide_class("back_drop");
+                break;
         }
     }
 
