@@ -11,25 +11,7 @@ function save_local(object){
 
     }
 };
-function load_local(object){
-    if (typeof(Storage) !== "undefined") {
-        // Code for localStorage/sessionStorage.
-        if(localStorage.getItem("lastGrid") != null){
-            if(localStorage.lastGrid.toString()!=""){
-                stringToGrid(localStorage.lastGrid.toString(),Life);
-                var context = gridCanvas.getContext('2d');
-                context.clearRect(0, 0, width, height);
-                drawGrid(context);
-                updateAnimations();
-                console.log(testString);
-            }
-        }
-    } else {
-        // Sorry! No Web Storage support..
-        alert("Web storage is unsupported in your browser.");
 
-    }
-};
 function clear_local(){
     if(localStorage.getItem("lastGrid") != null){
         localStorage.removeItem("lastGrid");
@@ -132,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.setAttribute("height", wrapper.offsetHeight);
 
     // From JavaScript: The good parts - Chapter 6. Arrays, Section 6.7. Dimensions
-
     var gridCanvas = document.getElementById('game_canvas');
     var counterSpan = document.getElementById("counter");
     var controlLinkStart = document.getElementById("start");
@@ -146,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var loadedValue = document.getElementById('loaded_data').innerHTML;
     loadedValue = loadedValue.toString();
-    console.log(loadedValue);
 
 
     var width = gridCanvas.width;
@@ -158,11 +138,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(loadedValue != ""){
         stringToGrid(loadedValue,Life);
+    }else if(local_exist()){
+        load_local(Life);
+        clear_local();
     }
+
     var context = gridCanvas.getContext('2d');
     context.clearRect(0, 0, width, height);
     drawGrid(context);
-    updateAnimations();
+    updateAnimations(Life);
 
 
     Life.updateState = function() {
@@ -203,7 +187,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return total;
     };
+    function load_local(object){
+        if (typeof(Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            if(localStorage.getItem("lastGrid") != null){
+                if(localStorage.lastGrid.toString()!=""){
+                    stringToGrid(localStorage.lastGrid.toString(),Life);
 
+                }
+            }
+        } else {
+            // Sorry! No Web Storage support..
+            alert("Web storage is unsupported in your browser.");
+
+        }
+    };
     window.addEventListener('resize', function(){
         saveGrid();
         var wrapper = document.getElementsByClassName('on_canvas_controls')[0];
@@ -214,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
         context.clearRect(0, 0, width, height);
         drawGrid(context);
         copyGrid(savedLife.grid,Life.grid);
-        updateAnimations();
+        updateAnimations(Life);
 
     }, true);
     //save function
@@ -339,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var context = gridCanvas.getContext('2d');
             context.clearRect(0, 0, width, height);
             drawGrid(context);
-            updateAnimations();
+            updateAnimations(Life);
         }
     };
     zoomOutLink.onclick = function(){
@@ -352,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var context = gridCanvas.getContext('2d');
             context.clearRect(0, 0, width, height);
             drawGrid(context);
-            updateAnimations();
+            updateAnimations(Life);
         }
     };
 
@@ -360,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function update() {
         Life.updateState();
-        updateAnimations();
+        updateAnimations(Life);
     };
 
     //copy grid from source to target
@@ -384,10 +382,10 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
 
-    function updateAnimations() {
-        for (var h = 0; h < Life.HEIGHT; h++) {
-            for (var w = 0; w < Life.WIDTH; w++) {
-                if (Life.grid[h][w] === Life.ALIVE) {
+    function updateAnimations(life) {
+        for (var h = 0; h < life.HEIGHT; h++) {
+            for (var w = 0; w < life.WIDTH; w++) {
+                if (life.grid[h][w] === life.ALIVE) {
                     context.fillStyle = "#555";
 
                 } else {
@@ -395,14 +393,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     //context.clearRect();
                 }
                 context.fillRect(
-                    w * Life.CELL_SIZE +1,
-                    h * Life.CELL_SIZE +1,
-                    Life.CELL_SIZE -1,
-                    Life.CELL_SIZE -1);
+                    w * life.CELL_SIZE +1,
+                    h * life.CELL_SIZE +1,
+                    life.CELL_SIZE -1,
+                    life.CELL_SIZE -1);
                 }
             }
-            counterSpan.innerHTML = Life.counter;
+            counterSpan.innerHTML = life.counter;
         };
+
         function drawGrid(context){
 
 
@@ -429,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (mouseDownFlag) {
                     var cell = getCursorPosition(event);
                     Life.grid[cell.row][cell.column] = Life.ALIVE;
-                    updateAnimations();
+                    updateAnimations(Life);
                 }
             };
 
@@ -441,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     var state = Life.ALIVE;
                 }
                 Life.grid[cell.row][cell.column] = state;
-                updateAnimations();
+                updateAnimations(Life);
             };
 
             function getCursorPosition(event) {
@@ -458,7 +457,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 x -= gridCanvas.offsetLeft + gridCanvas.offsetParent.offsetLeft;
                 y -= gridCanvas.offsetTop + gridCanvas.offsetParent.offsetTop;
 
-                console.log(x + " " + y);
 
                 var cell = new Cell(Math.floor(y / Life.CELL_SIZE), Math.floor(x / Life.CELL_SIZE));
                 return cell;
