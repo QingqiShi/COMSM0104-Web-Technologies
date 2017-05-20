@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var sign_up_result = getQueryString("sign_up_result");
     if (sign_up_result !== null) {
         show_class("back_drop");
+
         switch (sign_up_result) {
             case "USER_NAME_TOO_SHORT":
                 show_class("sign_up_pop_up");
@@ -92,6 +93,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
         hide_class("sign_in_pop_up");
         show_class("back_drop");
         show_class("sign_up_pop_up");
+    });
+
+    var publish_form = document.querySelectorAll(".publish_pop_up form")[0];
+    var sign_in_form = document.querySelectorAll(".sign_in_pop_up form")[0];
+    var sign_up_form = document.querySelectorAll(".sign_up_pop_up form")[0];
+    var publish_submit = document.querySelectorAll(".publish_pop_up .btn")[0];
+    var sign_in_submit = document.querySelectorAll(".sign_in_pop_up .btn")[0];
+    var sign_up_submit = document.querySelectorAll(".sign_up_pop_up .btn")[0];
+    publish_submit.addEventListener("click", function(){
+        if (typeof Life !== 'undefined') {
+            save_local(Life);
+        }
+        publish_form.submit();
+    });
+    sign_in_submit.addEventListener("click", function(){
+        if (typeof Life !== 'undefined') {
+            save_local(Life);
+        }
+        sign_in_form.submit();
+    });
+    sign_up_submit.addEventListener("click", function(){
+        if (typeof Life !== 'undefined') {
+            save_local(Life);
+        }
+        sign_up_form.submit();
     });
 });
 

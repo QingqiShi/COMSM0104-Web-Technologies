@@ -40,13 +40,10 @@ router.post('/', function(req, res, next) {
         "INSERT INTO Game_States (user_name, game_name, game_desc, game_data, game_date) VALUES (?, ?, ?, ?, ?)",
         req.session.user_name, pubblish_title, publish_description, game_data, date,
         function(err) {
-            var result = "";
             if (err === null) {
-                result = "SUCCESS";
-                res.redirect("game.html?game_id=" + this.lastID + "&publish_result=" + result);
+                res.redirect("game.html?game_id=" + this.lastID);
             } else {
-                result = "FAILED";
-                res.redirect("game.html?publish_result=" + result);
+                res.redirect("game.html?publish_result=FAILED");
             }
         }
     );

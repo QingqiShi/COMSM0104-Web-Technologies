@@ -253,7 +253,7 @@ footer p {
     color: #fff;
 }
 
-.sign_in_fail, .sign_up_fail {
+.sign_in_fail, .sign_up_fail, .publish_fail {
     padding: 1rem;
     border: 1px solid red;
     background-color: rgba(255, 0, 0, 0.35);
