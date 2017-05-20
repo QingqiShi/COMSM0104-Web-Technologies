@@ -1,35 +1,48 @@
 //save function
 function save_local(object){
-        if (typeof(Storage) !== "undefined") {
-            // Code for localStorage/sessionStorage.
-            var grid = gridToString(object);
-            localStorage.setItem("lastGrid", grid);
+    if (typeof(Storage) !== "undefined") {
+        // Code for localStorage/sessionStorage.
+        var grid = gridToString(object);
+        localStorage.setItem("lastGrid", grid);
 
-        } else {
-            // Sorry! No Web Storage support..
-            alert("Web storage is unsupported in your browser.");
+    } else {
+        // Sorry! No Web Storage support..
+        alert("Web storage is unsupported in your browser.");
 
-        }
-    };
-    function load_local(object){
-        if (typeof(Storage) !== "undefined") {
-            // Code for localStorage/sessionStorage.
-            if(localStorage.getItem("lastGrid") != null){
-                if(localStorage.lastGrid.toString()!=""){
-                    stringToGrid(localStorage.lastGrid.toString(),Life);
-                    var context = gridCanvas.getContext('2d');
-                    context.clearRect(0, 0, width, height);
-                    drawGrid(context);
-                    updateAnimations();
-                    console.log(testString);
-                }
+    }
+};
+function load_local(object){
+    if (typeof(Storage) !== "undefined") {
+        // Code for localStorage/sessionStorage.
+        if(localStorage.getItem("lastGrid") != null){
+            if(localStorage.lastGrid.toString()!=""){
+                stringToGrid(localStorage.lastGrid.toString(),Life);
+                var context = gridCanvas.getContext('2d');
+                context.clearRect(0, 0, width, height);
+                drawGrid(context);
+                updateAnimations();
+                console.log(testString);
             }
-        } else {
-            // Sorry! No Web Storage support..
-            alert("Web storage is unsupported in your browser.");
-
         }
-    };
+    } else {
+        // Sorry! No Web Storage support..
+        alert("Web storage is unsupported in your browser.");
+
+    }
+};
+function clear_local(){
+    if(localStorage.getItem("lastGrid") != null){
+        localStorage.removeItem("lastGrid");
+    }
+};
+
+function local_exist(){
+    if(localStorage.getItem("lastGrid") != null){
+        return true;
+    }else{
+        return false;
+    }
+};
 function initialiseObject(object, cellSize, canvas){
 
     object.CELL_SIZE = cellSize;
@@ -84,17 +97,17 @@ function gridToString(object){
     string = string.concat("L");
     //the remainings are the coordinates of the cells that have state of ALIVE
     for(var i = 0; i < object.WIDTH; i++) {
-            for(var z = 0; z < object.HEIGHT; z++) {
-                if(object.grid[z][i]==object.ALIVE){
-                    var xCoord = z;
-                    var yCoord = i;
-                    var tempS = "";
-                    tempS = tempS.concat(xCoord.toString(),",",yCoord.toString());
-                    string = string.concat(tempS);
-                    string = string.concat("/");
-                }
+        for(var z = 0; z < object.HEIGHT; z++) {
+            if(object.grid[z][i]==object.ALIVE){
+                var xCoord = z;
+                var yCoord = i;
+                var tempS = "";
+                tempS = tempS.concat(xCoord.toString(),",",yCoord.toString());
+                string = string.concat(tempS);
+                string = string.concat("/");
             }
         }
+    }
     string = string.concat("E");
     return string;
 };
@@ -205,27 +218,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }, true);
     //save function
-        function saveGrid(){
-            savedLife.CELL_SIZE = Life.CELL_SIZE;
-            savedLife.X = Life.X;
-            savedLife.Y = Life.Y;
-            savedLife.WIDTH = Life.WIDTH;
-            savedLife.HEIGHT = Life.HEIGHT;
-            copyGrid(Life.grid,savedLife.grid);
+    function saveGrid(){
+        savedLife.CELL_SIZE = Life.CELL_SIZE;
+        savedLife.X = Life.X;
+        savedLife.Y = Life.Y;
+        savedLife.WIDTH = Life.WIDTH;
+        savedLife.HEIGHT = Life.HEIGHT;
+        copyGrid(Life.grid,savedLife.grid);
 
-        };
-        //load function
-        function loadGrid(){
-            Life.CELL_SIZE = savedLife.CELL_SIZE;
-            Life.X = savedLife.X;
-            Life.Y = savedLife.Y;
-            Life.WIDTH = savedLife.WIDTH;
-            Life.HEIGHT = savedLife.HEIGHT;
-            var context = gridCanvas.getContext('2d');
-            context.clearRect(0, 0, width, height);
-            drawGrid(context);
-            copyGrid(savedLife.grid,Life.grid);
-        };
+    };
+    //load function
+    function loadGrid(){
+        Life.CELL_SIZE = savedLife.CELL_SIZE;
+        Life.X = savedLife.X;
+        Life.Y = savedLife.Y;
+        Life.WIDTH = savedLife.WIDTH;
+        Life.HEIGHT = savedLife.HEIGHT;
+        var context = gridCanvas.getContext('2d');
+        context.clearRect(0, 0, width, height);
+        drawGrid(context);
+        copyGrid(savedLife.grid,Life.grid);
+    };
     function Cell(row, column) {
         this.row = row;
         this.column = column;
