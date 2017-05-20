@@ -51,6 +51,10 @@ p, a, span, div, li {
     text-align: right;
     background-color: #222;
     color: #fff;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
 }
 
 #main_nav a {
@@ -118,7 +122,7 @@ p, a, span, div, li {
 
 /* Start button */
 .intro_section {
-    padding: 3rem 20% 3rem 20%;
+    padding: 5rem 20% 3rem 20%;
     background: #f6f6f6;
 }
 
@@ -176,7 +180,7 @@ footer p {
 .content {
     width: 60%;
     margin: 0 auto 0 auto;
-    padding: 3rem 0 3rem 0;
+    padding: 5rem 0 3rem 0;
 }
 
 .content h2 {
@@ -204,6 +208,7 @@ footer p {
     bottom: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index: 200;
 }
 
 .sign_in_pop_up, .sign_up_pop_up, .publish_pop_up {
@@ -485,4 +490,16 @@ input.btn:hover {
 /* Browse */
 h2.empty {
     text-align: center;
+}
+
+
+/* Media queries */
+@media (max-width: 1024px) {
+  .content {
+      width: 80%;
+  }
+
+  .intro_section {
+      padding: 5rem 10% 3rem 10%;
+  }
 }

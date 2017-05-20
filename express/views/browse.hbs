@@ -3,7 +3,7 @@
 
 <div class="content">
 {{#each game_states}}
-    <a class="game_card" href="game.html?game_id={{game_id}}">
+    <a class="game_card" href="game.html?game_id={{game_id}}" data-aos="zoom-in">
         <div class="meta">
             #<span class="id">{{game_id}}</span> Date: <span class="date">{{formatDate game_date "DD MMMM - YYYY"}} </span> Created by: <span class="play_num">{{user_name}}</span>
         </div>

@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+    AOS.init({
+        duration: 500,
+    });
+
     var sign_up_result = getQueryString("sign_up_result");
     if (sign_up_result !== null) {
         show_class("back_drop");
