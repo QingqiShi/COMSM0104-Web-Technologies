@@ -352,6 +352,7 @@ input.btn:hover {
     padding: 2rem;
     color: #222;
     text-decoration: none;
+    box-shadow: 0 0.1rem 0.5rem #ddd;
 
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
@@ -360,7 +361,12 @@ input.btn:hover {
 }
 
 .game_card:hover {
-    box-shadow: 0 0.2rem 1rem #ddd;
+    box-shadow: 0 0.3rem 1.5rem #ddd;
+
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 
 .game_card:after {
