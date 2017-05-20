@@ -23,11 +23,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (sign_in_btn !== null && typeof sign_in_btn != 'undefined') {
         sign_in_btn.addEventListener("click", function(){
+            // Save locally
+            save_local(Life);
+
             show_class("back_drop");
             show_class("sign_in_pop_up");
         });
 
         sign_in_close_btn.addEventListener("click", function(){
+            // Clear local
+            clear_local();
+
             hide_class("back_drop");
             hide_class("sign_in_pop_up");
         });
@@ -41,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
             game_pause(Life);
             var data = game_convert(Life);
 
+            // Save locally
+            save_local(Life);
+
             var game_data_field = document.getElementById("game_data");
             game_data_field.setAttribute("value", data);
 
@@ -49,6 +58,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         publish_close_btn.addEventListener("click", function(){
+            // Clear local
+            clear_local();
+
             hide_class("back_drop");
             hide_class("publish_pop_up");
         });
