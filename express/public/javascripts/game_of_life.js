@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var clearLink = document.getElementById("clearLink");
     var zoomInLink = document.getElementById("zoomin");
     var zoomOutLink = document.getElementById("zoomout");
+    var zoomLink = document.getElementById("zoom");
     var speedUpLink = document.getElementById("speedup");
     var speedDownLink = document.getElementById("speeddown");
     var speedRangeLink = document.getElementById("speed");
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var context = gridCanvas.getContext('2d');
     context.clearRect(0, 0, width, height);
-    drawGrid(context);
+    drawGrid(context,Life);
     updateAnimations(Life);
 
 
@@ -212,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
         canvas.setAttribute("height", wrapper.offsetHeight);
         var context = canvas.getContext('2d');
         context.clearRect(0, 0, width, height);
-        drawGrid(context);
+        drawGrid(context,Life);
         copyGrid(savedLife.grid,Life.grid);
         updateAnimations(Life);
 
@@ -236,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Life.HEIGHT = savedLife.HEIGHT;
         var context = gridCanvas.getContext('2d');
         context.clearRect(0, 0, width, height);
-        drawGrid(context);
+        drawGrid(context,Life);
         copyGrid(savedLife.grid,Life.grid);
     };
     function Cell(row, column) {
@@ -293,34 +294,38 @@ document.addEventListener("DOMContentLoaded", function() {
     //speed up button execution
     speedUpLink.onclick = function() {
         if(Life.state == Life.RUNNING){
-            if(Life.DELAY>=100){
-                Life.DELAY-=50;
+            if(Life.DELAY>=70){
+                Life.DELAY-=20;
             }
             clearInterval(Life.interval);
 
             Life.interval = setInterval(function() {
                 update();
             }, Life.DELAY);
+            speedRangeLink.value = 550 - Life.DELAY;
+
         }
     };
 
     //speed down button execution
     speedDownLink.onclick = function() {
         if(Life.state == Life.RUNNING){
-            if(Life.DELAY<=450){
-                Life.DELAY+=50;
+            if(Life.DELAY<=480){
+                Life.DELAY+=20;
             }
             clearInterval(Life.interval);
 
             Life.interval = setInterval(function() {
                 update();
             }, Life.DELAY);
+            speedRangeLink.value = 550 - Life.DELAY;
+
         }
     };
 
-    speedRangeLink.onclick = function() {
+    speedRangeLink.onchange = function() {
         if(Life.state == Life.RUNNING){
-            Life.DELAY = 520 - speedRangeLink.value;
+            Life.DELAY = 550 - speedRangeLink.value;
             clearInterval(Life.interval);
 
             Life.interval = setInterval(function() {
@@ -330,32 +335,46 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     zoomInLink.onclick = function(){
-        if(Life.CELL_SIZE<=28){
-            Life.CELL_SIZE+=4;
+        if(Life.CELL_SIZE<=31){
+            Life.CELL_SIZE+=1;
             Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
             Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
             Life.WIDTH = Life.X / Life.CELL_SIZE;
             Life.HEIGHT = Life.Y / Life.CELL_SIZE;
             var context = gridCanvas.getContext('2d');
             context.clearRect(0, 0, width, height);
-            drawGrid(context);
+            drawGrid(context,Life);
             updateAnimations(Life);
+            zoomLink.value = Life.CELL_SIZE;
+
         }
     };
     zoomOutLink.onclick = function(){
-        if(Life.CELL_SIZE>=12){
-            Life.CELL_SIZE-=4;
+        if(Life.CELL_SIZE>=9){
+            Life.CELL_SIZE-=1;
             Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
             Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
             Life.WIDTH = Life.X / Life.CELL_SIZE;
             Life.HEIGHT = Life.Y / Life.CELL_SIZE;
             var context = gridCanvas.getContext('2d');
             context.clearRect(0, 0, width, height);
-            drawGrid(context);
+            drawGrid(context,Life);
             updateAnimations(Life);
+            zoomLink.value = Life.CELL_SIZE;
         }
     };
-
+    zoomLink.onchange = function(){
+        Life.CELL_SIZE = zoomLink.value;
+        Life.X = (gridCanvas.width-gridCanvas.width%Life.CELL_SIZE)*2;
+        Life.Y = (gridCanvas.height-gridCanvas.height%Life.CELL_SIZE)*2;
+        Life.WIDTH = Life.X / Life.CELL_SIZE;
+        Life.HEIGHT = Life.Y / Life.CELL_SIZE;
+        var context = gridCanvas.getContext('2d');
+        context.clearRect(0, 0, width, height);
+        drawGrid(context,Life);
+        updateAnimations(Life);
+        // console.log(Life.CELL_SIZE);
+    };
 
 
     function update() {
@@ -404,17 +423,18 @@ document.addEventListener("DOMContentLoaded", function() {
             counterSpan.innerHTML = life.counter;
         };
 
-        function drawGrid(context){
+        function drawGrid(context,life){
 
 
-            for (var x = 0; x <= Life.X; x += Life.CELL_SIZE) {
+            for (var x = 0; x <= life.X; x += life.CELL_SIZE) {
                 context.moveTo(0.5 + x, 0);
-                context.lineTo(0.5 + x, Life.Y);
+                context.lineTo(0.5 + x, life.Y);
+                console.log(life.CELL_SIZE);
 
             }
-            for (var y = 0; y <= Life.Y; y += Life.CELL_SIZE) {
+            for (var y = 0; y <= life.Y; y += life.CELL_SIZE) {
                 context.moveTo(0, 0.5 + y);
-                context.lineTo(Life.X, 0.5 + y);
+                context.lineTo(life.X, 0.5 + y);
             }
             context.strokeStyle = "#ffffff";
             context.stroke();
@@ -422,7 +442,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (gridCanvas.getContext) {
             var context = gridCanvas.getContext('2d');
             var offset = Life.CELL_SIZE;
-            drawGrid(context);
+            drawGrid(context,Life);
 
             var mouseDownFlag = false;
 
