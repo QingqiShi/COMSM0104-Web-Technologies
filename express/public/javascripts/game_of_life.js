@@ -135,13 +135,15 @@ document.addEventListener("DOMContentLoaded", function() {
     //initialise objects
     initialiseObject(Life,8,gridCanvas);
     savedLife.grid = Array.matrix(Life.HEIGHT, Life.WIDTH, 0);
-
+    if(local_exist()){
+       load_local(Life);
+       clear_local();
+   }
     if(loadedValue != ""){
         stringToGrid(loadedValue,Life);
-    }else if(local_exist()){
-        load_local(Life);
-        clear_local();
     }
+
+
 
     var context = gridCanvas.getContext('2d');
     context.clearRect(0, 0, width, height);
