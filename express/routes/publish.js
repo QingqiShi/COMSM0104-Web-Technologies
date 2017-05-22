@@ -5,46 +5,54 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('data.db');
 
 var validate_data = function (data) {
-    // if(data.includes("C")&&data.indexOf("C")==data.lastIndexOf("C")){
-    //     if(data.includes("X")&&data.indexOf("X")==data.lastIndexOf("X")){
-    //         if(data.includes("Y")&&data.indexOf("Y")==data.lastIndexOf("Y")){
-    //             if(data.includes("L")&&data.indexOf("L")==data.lastIndexOf("L")){
-    //                 if(data.includes("E")&&data.indexOf("E")==data.lastIndexOf("E")){
-    //                     var coord = str.slice(str.indexOf("L") + 1);
-    //                     while (!coord.startsWith("E")) {
-    //                         if(coord.includes("/")&&coord.includes(",")&&coord.indexOf(",")<coord..indexOf("/")){
-    //                             var coords = coord.substring(0, coord.indexOf("/"));
-    //                             var loc = coords.split(",");
-    //                             if(loc[0]!=""&&loc[1]!=""){
-    //                                 coord = coord.slice(coord.indexOf("/")+1);
-    //                             }else{
-    //                                 return false;
-    //                             }
-    //                         }
-    //                     }
-    //                     return true;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    if(data.includes("C")&&data.indexOf("C")==data.lastIndexOf("C")){
+        if(data.includes("X")&&data.indexOf("X")==data.lastIndexOf("X")){
+            if(data.includes("Y")&&data.indexOf("Y")==data.lastIndexOf("Y")){
+                if(data.includes("L")&&data.indexOf("L")==data.lastIndexOf("L")){
+                    if(data.includes("E")&&data.indexOf("E")==data.lastIndexOf("E")){
+                        var coord = str.slice(str.indexOf("L") + 1);
+                        while (!coord.startsWith("E")) {
+                            if(coord.includes("/")&&coord.includes(",")&&coord.indexOf(",")<coord.indexOf("/")){
+                                var coords = coord.substring(0, coord.indexOf("/"));
+                                var loc = coords.split(",");
+                                if(loc[0]!=""&&loc[1]!=""){
+                                    coord = coord.slice(coord.indexOf("/")+1);
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+    }
     return false;
 }
 
 var convert_svg = function (data) {
     var game_model = new Game_Model(300, 300);
-    var svg_thumb = "";
+    var svgSize = 500;
+    var range = 20;
+    var svg_thumb = "<svg width=\""+svgSize.toString()+"\" height=\""+svgSize.toString()+"\"><rect x=\"0\" y=\"0\" width=\"500\" height=\"500\" opacity=\"1\" fill=\"#f6f6f6\" stroke=\"none\"></rect>";
     game_model.from_string(data);
-    for(var h = 0; h < game_model.row; h++){
-        for(var w = 0; h < game_model.column; w++){
+    var cellSize = (svgSize-1)/range-1;
+    for(var h = game_model.row/2-range/2; h < game_model.row/2+range/2; h++){
+        for(var w = game_model.column/2-range/2; h < game_model.column/2+range/2; w++){
+            var x = (h-(game_model.row/2-range/2))*cellSize+1;
+            var y = (w-(game_model.col/2-range/2))*cellSize+1;
                 if(game_model.grid[h][w]==ALIVE){
                     //draw black block
+                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\""+cellSize.toString()+"\" height=\""+cellSize.toString()+"\" opacity=\"1\" fill=\"#555\" stroke=\"none\"></rect>")
 
                 }else{
                     //draw white block
+                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\"1\" height=\"1\" opacity=\"1\" fill=\"#fff\" stroke=\"none\"></rect>")
                 }
         }
     }
+    svg_thumb = svg_thumb.concat("</svg>");
     return svg_thumb;
 }
 
