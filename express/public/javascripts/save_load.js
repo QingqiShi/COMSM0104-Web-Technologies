@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (sign_in_btn !== null && typeof sign_in_btn != 'undefined') {
         sign_in_btn.addEventListener("click", function(){
+            game_pause();
             show_class("back_drop");
             show_class("sign_in_pop_up");
         });
