@@ -1,3 +1,7 @@
+var save_local = function() {
+    game_controller.model.save_local();
+};
+
 document.addEventListener("DOMContentLoaded", function(event) {
     AOS.init({
         duration: 500,
@@ -102,20 +106,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var sign_in_submit = document.querySelectorAll(".sign_in_pop_up .btn")[0];
     var sign_up_submit = document.querySelectorAll(".sign_up_pop_up .btn")[0];
     publish_submit.addEventListener("click", function(){
-        if (typeof Life !== 'undefined') {
-            save_local(Life);
+        if (typeof game_controller !== 'undefined') {
+            save_local();
         }
         publish_form.submit();
     });
     sign_in_submit.addEventListener("click", function(){
-        if (typeof Life !== 'undefined') {
-            save_local(Life);
+        if (typeof game_controller !== 'undefined') {
+            save_local();
         }
         sign_in_form.submit();
     });
     sign_up_submit.addEventListener("click", function(){
-        if (typeof Life !== 'undefined') {
-            save_local(Life);
+        if (typeof game_controller !== 'undefined') {
+            save_local();
         }
         sign_up_form.submit();
     });

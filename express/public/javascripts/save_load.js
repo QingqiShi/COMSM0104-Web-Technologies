@@ -1,20 +1,9 @@
-var game_pause = function (life) {
-    if(life.state == life.RUNNING){
-        var controlLinkStart = document.getElementById("start");
-        var controlLinkStop = document.getElementById("stop");
-        if (controlLinkStart.classList.contains("active")) {
-            controlLinkStart.classList.remove("active");
-        }
-        if (!controlLinkStop.classList.contains("active")) {
-            controlLinkStop.classList.add("active");
-        }
-        clearInterval(life.interval);
-        life.state = life.STOPPED;
-    }
+var game_pause = function() {
+    game_controller.stop();
 }
 
-var game_convert = function (life) {
-    return gridToString(life);
+var game_convert = function() {
+    return game_controller.model.to_string();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -70,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (publish_btn !== null && typeof publish_btn != 'undefined') {
         publish_btn.addEventListener("click", function(){
-            game_pause(Life);
-            var data = game_convert(Life);
+            game_pause();
+            var data = game_convert();
 
             var game_data_field = document.getElementById("game_data");
             game_data_field.setAttribute("value", data);
