@@ -33,18 +33,26 @@ var validate_data = function (data) {
 
 var convert_svg = function (data) {
     var game_model = new Game_Model(300, 300);
-    var svg_thumb = "";
+    var svgSize = 500;
+    var range = 20;
+    var svg_thumb = "<svg width=\""+svgSize.toString()+"\" height=\""+svgSize.toString()+"\"><rect x=\"0\" y=\"0\" width=\"500\" height=\"500\" opacity=\"1\" fill=\"#f6f6f6\" stroke=\"none\"></rect>";
     game_model.from_string(data);
-    for(var h = 0; h < game_model.row; h++){
-        for(var w = 0; h < game_model.column; w++){
+    var cellSize = (svgSize-1)/range-1;
+    for(var h = game_model.row/2-range/2; h < game_model.row/2+range/2; h++){
+        for(var w = game_model.column/2-range/2; h < game_model.column/2+range/2; w++){
+            var x = (h-(game_model.row/2-range/2))*cellSize+1;
+            var y = (w-(game_model.col/2-range/2))*cellSize+1;
                 if(game_model.grid[h][w]==ALIVE){
                     //draw black block
+                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\""+cellSize.toString()+"\" height=\""+cellSize.toString()+"\" opacity=\"1\" fill=\"#555\" stroke=\"none\"></rect>")
 
                 }else{
                     //draw white block
+                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\"1\" height=\"1\" opacity=\"1\" fill=\"#fff\" stroke=\"none\"></rect>")
                 }
         }
     }
+    svg_thumb = svg_thumb.concat("</svg>");
     return svg_thumb;
 }
 
