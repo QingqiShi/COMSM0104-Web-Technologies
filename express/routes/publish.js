@@ -3,7 +3,6 @@ var router = express.Router();
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('data.db');
-var game_model = new Game_Model(300, 300);
 
 var validate_data = function (data) {
     // if(data.includes("C")&&data.indexOf("C")==data.lastIndexOf("C")){
@@ -33,6 +32,7 @@ var validate_data = function (data) {
 }
 
 var convert_svg = function (data) {
+    var game_model = new Game_Model(300, 300);
     var svg_thumb = "";
     game_model.from_string(data);
     for(var h = 0; h < game_model.row; h++){
