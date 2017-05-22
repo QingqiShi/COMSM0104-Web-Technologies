@@ -8,6 +8,19 @@ var validate_data = function (data) {
     return true;
 }
 
+var convert_svg = function (data) {
+    return "";
+}
+
+var save_svg = function (svg, game_id) {
+    // Name convention: game_id_thumb.svg
+    // Path: path.join(__dirname, 'public/images/')
+}
+
+var Game_Model = function() {
+
+}
+
 /* Post sign in. */
 router.post('/', function(req, res, next) {
     if (!req.session.user_name) {
@@ -42,6 +55,9 @@ router.post('/', function(req, res, next) {
         function(err) {
             if (err === null) {
                 res.redirect("game.html?game_id=" + this.lastID);
+
+                // Convert to svg and save, with game_id = this.lastID
+                
             } else {
                 res.redirect("game.html?publish_result=FAILED");
             }
