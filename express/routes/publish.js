@@ -5,10 +5,34 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('data.db');
 
 var validate_data = function (data) {
-    return true;
+    if(data.includes("C")&&data.indexOf("C")==data.lastIndexOf("C")){
+        if(data.includes("X")&&data.indexOf("X")==data.lastIndexOf("X")){
+            if(data.includes("Y")&&data.indexOf("Y")==data.lastIndexOf("Y")){
+                if(data.includes("L")&&data.indexOf("L")==data.lastIndexOf("L")){
+                    if(data.includes("E")&&data.indexOf("E")==data.lastIndexOf("E")){
+                        var coord = str.slice(str.indexOf("L") + 1);
+                        while (!coord.startsWith("E")) {
+                            if(coord.includes("/")&&coord.includes(",")&&coord.indexOf(",")<coord..indexOf("/")){
+                                var coords = coord.substring(0, coord.indexOf("/"));
+                                var loc = coords.split(",");
+                                if(loc[0]!=""&&loc[1]!=""){
+                                    coord = coord.slice(coord.indexOf("/")+1);
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
 
 var convert_svg = function (data) {
+    
     return "";
 }
 
@@ -57,7 +81,7 @@ router.post('/', function(req, res, next) {
                 res.redirect("game.html?game_id=" + this.lastID);
 
                 // Convert to svg and save, with game_id = this.lastID
-                
+
             } else {
                 res.redirect("game.html?publish_result=FAILED");
             }
