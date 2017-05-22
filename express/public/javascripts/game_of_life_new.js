@@ -513,8 +513,8 @@ var Game_View = function(controller) {
         if (view.left_mouse_down) {
 
             if (!view.mouse_moved) {
-                var delta_x = view.left_down_x - event.clientX;
-                var delta_y = view.left_down_y - event.clientY;
+                var delta_x = Math.abs(view.left_down_x - event.clientX);
+                var delta_y = Math.abs(view.left_down_y - event.clientY);
 
                 if (delta_x > 5 || delta_y > 5) {
                     view.mouse_moved = true;
