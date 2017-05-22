@@ -134,7 +134,7 @@ var Game_Model = function(controller, row, col) {
     this.to_string = function() {
         //the first value is CELL_SIZE
         var string = "C";
-        var cell_size = 0;
+        var cell_size = 1;
         string = string.concat(cell_size.toString());
         //second is X
         string = string.concat("X");
