@@ -441,6 +441,10 @@ input.btn:hover {
     height: 70vh;
 }
 
+.on_canvas_controls a {
+    text-shadow: 0 0 0.2rem #fff;
+}
+
 .active {
     color: #0e83cd !important;
 }
