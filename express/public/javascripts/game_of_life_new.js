@@ -490,6 +490,7 @@ var Game_View = function(controller) {
         event.preventDefault();
 
         if (view.left_mouse_down) {
+
             if (!view.mouse_moved) {
                 var delta_x = view.left_down_x - event.clientX;
                 var delta_y = view.left_down_y - event.clientY;
@@ -595,6 +596,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var game_data = document.getElementById('loaded_data').innerHTML;
     if (game_data) {
         game_controller.model.from_string(game_data);
+        if (this.local_exist()) {
+            this.clear_local();
+        }
     } else {
         // Attemp to load from local storage, may do nothing
         game_controller.model.load_local();
