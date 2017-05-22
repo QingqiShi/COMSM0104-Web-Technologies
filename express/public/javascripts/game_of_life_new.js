@@ -288,6 +288,8 @@ var Game_View = function(controller) {
     this.left_mouse_down = false;
     this.right_mouse_down = false;
     this.mouse_moved = false;
+    this.left_down_x = 0;
+    this.left_down_y = 0;
     this.right_down_x = 0;
     this.right_down_y = 0;
 
@@ -454,7 +456,10 @@ var Game_View = function(controller) {
         if (event.button == 0) {
             // Left button
             view.left_mouse_down = true;
-        } else if (event.button == 2) {
+            view.left_down_x = event.clientX;
+            view.left_down_y = event.clientY;
+        }
+        if (event.button == 2) {
             // Right button
             view.right_mouse_down = true;
             view.right_down_x = event.clientX;
@@ -475,7 +480,8 @@ var Game_View = function(controller) {
             }
 
             view.mouse_moved = false;
-        } else if (event.button == 2) {
+        }
+        if (event.button == 2) {
             view.right_mouse_down = false;
         }
     });
@@ -484,12 +490,20 @@ var Game_View = function(controller) {
         event.preventDefault();
 
         if (view.left_mouse_down) {
-            var coords = view.cursor_to_grid(event);
-            view.controller.modify(coords[0], coords[1], ALIVE);
-            view.controller.draw();
+            if (!view.mouse_moved) {
+                var delta_x = view.left_down_x - event.clientX;
+                var delta_y = view.left_down_y - event.clientY;
 
-            view.mouse_moved = true;
-        } else if (view.right_mouse_down) {
+                if (delta_x > 5 || delta_y > 5) {
+                    view.mouse_moved = true;
+                }
+            } else {
+                var coords = view.cursor_to_grid(event);
+                view.controller.modify(coords[0], coords[1], ALIVE);
+                view.controller.draw();
+            }
+        }
+        if (view.right_mouse_down) {
             var delta_x = view.right_down_x - event.clientX;
             var delta_y = view.right_down_y - event.clientY;
 
