@@ -10,7 +10,7 @@ var validate_data = function (data) {
             if(data.includes("Y")&&data.indexOf("Y")==data.lastIndexOf("Y")){
                 if(data.includes("L")&&data.indexOf("L")==data.lastIndexOf("L")){
                     if(data.includes("E")&&data.indexOf("E")==data.lastIndexOf("E")){
-                        var coord = str.slice(str.indexOf("L") + 1);
+                        var coord = data.slice(data.indexOf("L") + 1);
                         while (!coord.startsWith("E")) {
                             if(coord.includes("/")&&coord.includes(",")&&coord.indexOf(",")<coord.indexOf("/")){
                                 var coords = coord.substring(0, coord.indexOf("/"));

@@ -617,8 +617,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var game_data = document.getElementById('loaded_data').innerHTML;
     if (game_data) {
         game_controller.model.from_string(game_data);
-        if (this.local_exist()) {
-            this.clear_local();
+        if (game_controller.model.local_exist()) {
+            game_controller.model.clear_local();
         }
     } else {
         // Attemp to load from local storage, may do nothing
