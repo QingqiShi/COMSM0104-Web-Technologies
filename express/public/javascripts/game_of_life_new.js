@@ -105,6 +105,23 @@ var Game_Controller = function() {
     controller.get_grid_size = function() {
         return [controller.model.row, controller.model.col];
     }
+
+    controller.get_offset = function() {
+        return [controller.view.offset_x, controller.view.offset_y];
+    }
+
+    controller.get_zoom = function() {
+        return controller.view.zoom;
+    }
+
+    controller.set_offset = function(offset) {
+        controller.view.offset_x = offset[0];
+        controller.view.offset_y = offset[1];
+    }
+
+    controller.set_zoom = function(zoom) {
+        controller.view.zoom = zoom;
+    }
 };
 
 var Game_Model = function(controller, row, col) {
@@ -132,16 +149,18 @@ var Game_Model = function(controller, row, col) {
     }
 
     this.to_string = function() {
-        //the first value is CELL_SIZE
+        var zoom = this.controller.get_zoom();
+        var offset = this.controller.get_offset();
+
+        //the first value is ZOOM
         var string = "C";
-        var cell_size = 1;
-        string = string.concat(cell_size.toString());
-        //second is X
+        string = string.concat(zoom.toString());
+        //second is offset X
         string = string.concat("X");
-        string = string.concat(this.col.toString());
-        //third is Y
+        string = string.concat(offset[0].toString());
+        //third is offset Y
         string = string.concat("Y");
-        string = string.concat(this.row.toString());
+        string = string.concat(offset[1].toString());
         //the remainings are the coordinates of the cells that have state of ALIVE
         string = string.concat("L");
         for (var i = 0; i < this.row; i++) {
@@ -157,8 +176,10 @@ var Game_Model = function(controller, row, col) {
     };
 
     this.from_string = function(str) {
-        var useless_x = parseInt(str.substring(str.indexOf("X")+1,str.indexOf("Y")));
-        var useless_y = parseInt(str.substring(str.indexOf("Y")+1,str.indexOf("L")));
+        this.controller.set_zoom(parseInt(str.substring(str.indexOf("C")+1,str.indexOf("X"))));
+        var offset_x = parseInt(str.substring(str.indexOf("X")+1,str.indexOf("Y")));
+        var offset_y = parseInt(str.substring(str.indexOf("Y")+1,str.indexOf("L")));
+        this.controller.set_offset([offset_x, offset_y]);
 
         var coord = str.slice(str.indexOf("L") + 1);
 
@@ -613,6 +634,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var game_view = new Game_View(game_controller);
     game_controller.attach_view(game_view);
 
+    // Set canvas to resize with window
+    game_view.set_canvas_resize();
+
     // Load data from database
     var game_data = document.getElementById('loaded_data').innerHTML;
     if (game_data) {
@@ -624,10 +648,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Attemp to load from local storage, may do nothing
         game_controller.model.load_local();
     }
-
-
-    // Set canvas to resize with window
-    game_view.set_canvas_resize();
 
     // Draw the first time
     game_controller.draw();
