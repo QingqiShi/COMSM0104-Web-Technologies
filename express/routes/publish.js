@@ -35,20 +35,22 @@ var convert_svg = function (data) {
     var game_model = new Game_Model(300, 300);
     var svgSize = 500;
     var range = 20;
-    var svg_thumb = "<svg width=\""+svgSize.toString()+"\" height=\""+svgSize.toString()+"\"><rect x=\"0\" y=\"0\" width=\"500\" height=\"500\" opacity=\"1\" fill=\"#f6f6f6\" stroke=\"none\"></rect>";
+    var lineWidth = 2
+    var svg_thumb = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+     svg_thumb = svg_thumb.concat("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+svgSize.toString()+"\" height=\""+svgSize.toString()+"\"><rect x=\"0\" y=\"0\" width=\"500\" height=\"500\" opacity=\"1\" fill=\"#fff\" stroke=\"none\"></rect>");
     game_model.from_string(data);
-    var cellSize = (svgSize-1)/range-1;
+    var cellSize = (svgSize-1)/range-lineWidth;
     for(var h = game_model.row/2-range/2; h < game_model.row/2+range/2; h++){
-        for(var w = game_model.column/2-range/2; h < game_model.column/2+range/2; w++){
-            var x = (h-(game_model.row/2-range/2))*cellSize+1;
-            var y = (w-(game_model.col/2-range/2))*cellSize+1;
-                if(game_model.grid[h][w]==ALIVE){
+        for(var w = game_model.col/2-range/2; w < game_model.col/2+range/2; w++){
+            var x = (h-(game_model.row/2-range/2))*(cellSize+lineWidth);
+            var y = (w-(game_model.col/2-range/2))*(cellSize+lineWidth);
+                if(game_model.grid[h][w]==1){
                     //draw black block
                     svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\""+cellSize.toString()+"\" height=\""+cellSize.toString()+"\" opacity=\"1\" fill=\"#555\" stroke=\"none\"></rect>")
 
                 }else{
                     //draw white block
-                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\"1\" height=\"1\" opacity=\"1\" fill=\"#fff\" stroke=\"none\"></rect>")
+                    svg_thumb = svg_thumb.concat("<rect x=\""+x.toString()+"\" y=\""+y.toString()+"\" width=\""+cellSize.toString()+"\" height=\""+cellSize.toString()+"\" opacity=\"1\" fill=\"#f6f6f6\" stroke=\"none\"></rect>")
                 }
         }
     }
@@ -59,6 +61,19 @@ var convert_svg = function (data) {
 var save_svg = function (svg, game_id) {
     // Name convention: game_id_thumb.svg
     // Path: path.join(__dirname, 'public/images/')
+    var name = game_id.toString()+"_thumb.svg";
+    var path = require('path');
+    path = (path.join(__dirname, '../public/images/')).toString();
+    var fs = require('fs');
+
+  fs.writeFile(path+name, svg, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+
+      console.log("The file was saved!");
+  });
+
 }
 
 var Game_Model = function(row, col) {
@@ -70,7 +85,7 @@ var Game_Model = function(row, col) {
     for (var i = 0; i < row; i++) {
         this.grid[i] = [];
         for (var j = 0; j < col; j++) {
-            this.grid[i][j] = DEAD;
+            this.grid[i][j] = 0;
         }
     }
 
@@ -83,7 +98,7 @@ var Game_Model = function(row, col) {
         while (!coord.startsWith("E")) {
             var coords = coord.substring(0, coord.indexOf("/"));
             var loc = coords.split(",");
-            this.grid[parseInt(loc[0])][parseInt(loc[1])] = ALIVE;
+            this.grid[parseInt(loc[0])][parseInt(loc[1])] = 1;
             coord = coord.slice(coord.indexOf("/")+1);
         }
     };
@@ -125,6 +140,9 @@ router.post('/', function(req, res, next) {
                 res.redirect("game.html?game_id=" + this.lastID);
 
                 // Convert to svg and save, with game_id = this.lastID
+                var svgInfo = convert_svg(game_data);
+                save_svg(svgInfo,this.lastID);
+
 
             } else {
                 res.redirect("game.html?publish_result=FAILED");
