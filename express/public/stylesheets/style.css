@@ -135,6 +135,9 @@ p, a, span, div, li {
 .intro_section {
     padding: 5rem 20% 3rem 20%;
     background: #f6f6f6;
+    background-image: url("/images/background_pattern.svg");
+    -webkit-background-size: 5rem;
+    background-size: 50%;
 }
 
 .intro_section .words {
@@ -160,6 +163,7 @@ p, a, span, div, li {
     font-weight: 100;
     color: #222;
     line-height: 3rem;
+    margin-top: 0.5rem;
 }
 
 .intro_section .words a {
