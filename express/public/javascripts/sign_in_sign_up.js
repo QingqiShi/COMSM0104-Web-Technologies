@@ -4,7 +4,7 @@ var save_local = function() {
 
 document.addEventListener("DOMContentLoaded", function(event) {
     AOS.init({
-        duration: 500,
+        duration: 300,
     });
 
     var sign_up_result = getQueryString("sign_up_result");
