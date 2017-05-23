@@ -138,6 +138,7 @@ p, a, span, div, li {
     background-image: url("/images/background_pattern.svg");
     -webkit-background-size: 5rem;
     background-size: 50%;
+    box-shadow: inset 0px -5rem 5rem -5rem #ccc;
 }
 
 .intro_section .words {
