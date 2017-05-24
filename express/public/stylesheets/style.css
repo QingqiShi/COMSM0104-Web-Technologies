@@ -527,6 +527,16 @@ h2.empty {
     text-align: center;
 }
 
+/* Authors */
+.img_container {
+    text-align: center;
+}
+
+img.authors {
+    width: 70%;
+    box-shadow: 0 0.1rem 0.5rem #ddd;
+}
+
 
 /* Media queries */
 @media (max-width: 1024px) {
