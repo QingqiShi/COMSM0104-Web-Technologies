@@ -419,6 +419,7 @@ input.btn:hover {
 
 .game_card .image img {
     width: 100%;
+    box-shadow: 0 0 0.2rem #ccc;
 }
 
 .game_card .words {

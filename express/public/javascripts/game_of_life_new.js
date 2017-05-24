@@ -33,11 +33,11 @@ var Game_Controller = function() {
     controller.draw = function() {
         controller.view.clear_canvas();
         controller.view.draw(controller.model.grid, controller.model.row, controller.model.col);
-    }
+    };
 
     controller.modify = function(row, col, state) {
         controller.model.modify(row, col, state);
-    }
+    };
 
     controller.start = function() {
         if (!controller.running) {
@@ -49,7 +49,7 @@ var Game_Controller = function() {
                 controller.draw();
             }, delay);
         }
-    }
+    };
 
     controller.stop = function() {
         if (controller.running) {
@@ -57,13 +57,13 @@ var Game_Controller = function() {
             controller.running = false;
             clearInterval(controller.runner);
         }
-    }
+    };
 
     controller.clear = function() {
         controller.stop();
         controller.model.kill_all();
         controller.draw();
-    }
+    };
 
     controller.speed_up = function() {
         if (controller.speed < controller.max_speed) {
@@ -77,7 +77,7 @@ var Game_Controller = function() {
                 controller.start();
             }
         }
-    }
+    };
 
     controller.speed_down = function() {
         if (controller.speed > controller.min_speed) {
@@ -91,7 +91,7 @@ var Game_Controller = function() {
                 controller.start();
             }
         }
-    }
+    };
 
     controller.set_speed = function(speed) {
         controller.speed = speed;
@@ -100,28 +100,28 @@ var Game_Controller = function() {
             controller.stop();
             controller.start();
         }
-    }
+    };
 
     controller.get_grid_size = function() {
         return [controller.model.row, controller.model.col];
-    }
+    };
 
     controller.get_offset = function() {
         return [controller.view.offset_x, controller.view.offset_y];
-    }
+    };
 
     controller.get_zoom = function() {
         return controller.view.zoom;
-    }
+    };
 
     controller.set_offset = function(offset) {
         controller.view.offset_x = offset[0];
         controller.view.offset_y = offset[1];
-    }
+    };
 
     controller.set_zoom = function(zoom) {
         controller.view.zoom = zoom;
-    }
+    };
 };
 
 var Game_Model = function(controller, row, col) {
@@ -208,11 +208,11 @@ var Game_Model = function(controller, row, col) {
         } else {
             return false;
         }
-    }
+    };
 
     this.clear_local = function() {
         localStorage.removeItem("game_of_life");
-    }
+    };
 
     this.modify = function(row, col, state) {
         // Clip
@@ -225,7 +225,7 @@ var Game_Model = function(controller, row, col) {
         } else {
             this.grid[row][col] = state;
         }
-    }
+    };
 
     this.kill_all = function() {
         for (var i = 0; i < this.row; i++) {
@@ -233,7 +233,7 @@ var Game_Model = function(controller, row, col) {
                 this.grid[i][j] = DEAD;
             }
         }
-    }
+    };
 
     this.evolve = function() {
         for (var i = 0; i < this.row; i++) {
@@ -288,14 +288,14 @@ var Game_Model = function(controller, row, col) {
         }
 
         return total;
-    }
+    };
 
     // Swap current grid with grid buffer
     this.swap_grids = function() {
         var temp_grid = this.grid;
         this.grid = this.grid_buf;
         this.grid_buf = temp_grid;
-    }
+    };
 };
 
 var Game_View = function(controller) {
@@ -350,7 +350,7 @@ var Game_View = function(controller) {
         var grid_size = view.controller.get_grid_size();
         view.offset_x = -grid_size[1] * cell_size / 2 + view.canvas_width / 2;
         view.offset_y = -grid_size[0] * cell_size / 2 + view.canvas_width / 2;
-    }
+    };
 
     // Set canvas sizes
     view.resize_canvas = function(width, height) {
@@ -359,20 +359,20 @@ var Game_View = function(controller) {
 
         view.canvas.setAttribute("width", view.canvas_width);
         view.canvas.setAttribute("height", view.canvas_height);
-    }
+    };
 
     // Clear canvas
     view.clear_canvas = function() {
         view.canvas_context.clearRect(0, 0, view.canvas_width, view.canvas_height);
         view.canvas_context.fillStyle = BACKGROUND_COLOR;
         view.canvas_context.fillRect(0, 0, view.canvas_width, view.canvas_height);
-    }
+    };
 
     // Overlay cells on top of grid
     view.draw = function(grid, row, col) {
         view.draw_grid(row, col);
         view.draw_cells(grid, row, col);
-    }
+    };
 
     // Draw grid
     view.draw_grid = function(grid_row, grid_col) {
@@ -447,12 +447,12 @@ var Game_View = function(controller) {
     // Calculate size of cells based on zoom level
     view.get_cell_size = function() {
         return view.base_zoom * view.zoom;
-    }
+    };
 
     // Compare arrays with two elements
     view.coords_equal = function(coords_a, coords_b) {
         return coords_a[0] == coords_b[0] && coords_a[1] == coords_b[1];
-    }
+    };
 
     // Activate play icon
     view.activate_start = function() {
@@ -462,7 +462,7 @@ var Game_View = function(controller) {
         if (!view.start_ctrl.classList.contains("active")) {
             view.start_ctrl.classList.add("active");
         }
-    }
+    };
 
     // Activate pause icon
     view.activate_stop = function() {
@@ -472,7 +472,7 @@ var Game_View = function(controller) {
         if (!view.stop_ctrl.classList.contains("active")) {
             view.stop_ctrl.classList.add("active");
         }
-    }
+    };
 
     view.update_zoom = function(new_zoom) {
         var scale = new_zoom / view.zoom;
@@ -484,7 +484,7 @@ var Game_View = function(controller) {
         view.offset_y = center_offset_y + view.canvas_height / 2;
 
         view.zoom = new_zoom;
-    }
+    };
 
 
     /*
