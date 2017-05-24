@@ -22,7 +22,7 @@ Use npm to install modules again:
         > npm install
 
 ## Usage
-Navigate back to the base folder of the repository, then use the following to start a local server on http://localhost:8080:
+Navigate back to the base folder of the repository, then use the following to start a local server on https://localhost:8080:
 
         > npm start
 
