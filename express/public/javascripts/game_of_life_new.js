@@ -329,8 +329,6 @@ var Game_View = function(controller) {
     this.speed_up_ctrl      = document.getElementById("speedup");
     this.speed_down_ctrl    = document.getElementById("speeddown");
 
-    this.save_control       = document.getElementById("save");
-
     this.canvas_context = this.canvas.getContext('2d');
     this.canvas_width = 1000;
     this.canvas_height = 600;
@@ -620,9 +618,6 @@ var Game_View = function(controller) {
 
     view.speed_ctrl.addEventListener("change", function() {
         view.controller.set_speed(parseInt(view.speed_ctrl.value));
-    });
-    view.save_control.addEventListener("click", function() {
-
     });
 };
 
