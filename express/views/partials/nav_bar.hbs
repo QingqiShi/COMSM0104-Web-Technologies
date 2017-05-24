@@ -1,6 +1,8 @@
 <nav id="main_nav">
-    <img src="/images/logo_white.svg" alt="" class="site_logo">
-    <div class="site_name">Game of Life</div>
+    <a class="site_home" href="/">
+        <img src="/images/logo_white.svg" alt="" class="site_logo">
+        <div class="site_name">Game of Life</div>
+    </a>
     {{#if user_name}}
     <div class="user_signed_in">
         Hi, {{user_name}} <a href="signout.html?url={{url}}">Sign Out</a>
