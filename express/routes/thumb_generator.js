@@ -100,7 +100,9 @@ var Game_View = function() {
                     var y = (i * cell_size) + view.offset_y;
                     var x = (j * cell_size) + view.offset_x;
 
-                    result += view.svg.rect(x, y, cell_size-1, cell_size-1, CELL_COLOR);
+                    if (x >= -cell_size && x < view.canvas_width && y >= -cell_size && y < view.canvas_height) {
+                        result += view.svg.rect(x, y, cell_size-1, cell_size-1, CELL_COLOR);
+                    }
                 }
             }
         }
