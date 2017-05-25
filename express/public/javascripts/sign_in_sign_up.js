@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var show_message = function(message_pane, message) {
         show_element(message_pane);
         message_pane.innerHTML = message;
-    }
+    };
 
 
     /* Validate functions */
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             hide_element(sign_up_fail_pane);
             return true;
         }
-    }
+    };
 
     var validate_sign_in = function() {
         if (sign_in_user_name.value.length < 1) {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             hide_element(sign_in_fail_pane);
             return true;
         }
-    }
+    };
 
     var validate_publish = function() {
         if (publish_title.value.length < 1) {
@@ -128,23 +128,53 @@ document.addEventListener("DOMContentLoaded", function(event) {
             hide_element(publish_fail_pane);
             return true;
         }
+    };
+
+
+    /* Submit behaviour */
+    var submit_behaviour = function(form, validator) {
+        if (typeof game_controller != 'undefined' && game_controller) {
+            save_local();
+        }
+
+        if (validator()) {
+            form.submit();
+        }
     }
 
 
     /* Initialise submit buttons */
     var initialise_submit = function(btn, form, validator) {
         if (btn) {
-            btn.addEventListener("click", function(){
-                if (typeof game_controller != 'undefined' && game_controller) {
-                    save_local();
-                }
+            btn.addEventListener("click", function() {
+                submit_behaviour(form, validator);
+            });
+        }
+    };
 
-                if (validator()) {
-                    form.submit();
+
+    /* Register input validations */
+    var register_input_validation = function(input, validator) {
+        if (input) {
+            input.addEventListener("input", function() {
+                validator();
+            });
+        }
+    };
+
+
+    /* Register enter submit */
+    var register_enter = function(input, form, validator) {
+        if (input) {
+            input.addEventListener("keypress", function(event) {
+                keynum = event.keyCode || event.which;
+
+                if (keynum == 13) {
+                    submit_behaviour(form, validator);
                 }
             });
         }
-    }
+    };
 
 
     /* Panes */
@@ -160,6 +190,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     initialise_submit(sign_up_submit, sign_up_form, validate_sign_up);
     initialise_submit(sign_in_submit, sign_in_form, validate_sign_in);
     initialise_submit(publish_submit, publish_form, validate_publish);
+
+
+    /* Inputs */
+    register_input_validation(sign_up_user_name, validate_sign_up);
+    register_input_validation(sign_up_password, validate_sign_up);
+    register_input_validation(repeat_password, validate_sign_up);
+    register_input_validation(sign_in_user_name, validate_sign_in);
+    register_input_validation(sign_in_password, validate_sign_in);
+    register_input_validation(publish_title, validate_publish);
+    register_input_validation(publish_description, validate_publish);
+
+
+    /* Enter events */
+    register_enter(sign_up_user_name, sign_up_form, validate_sign_up);
+    register_enter(sign_up_password, sign_up_form, validate_sign_up);
+    register_enter(repeat_password, sign_up_form, validate_sign_up);
+    register_enter(sign_in_user_name, sign_in_form, validate_sign_in);
+    register_enter(sign_in_password, sign_in_form, validate_sign_in);
+    register_enter(publish_title, publish_form, validate_publish);
+    register_enter(publish_description, publish_form, validate_publish);
 
 
     /* Database errors */
