@@ -121,6 +121,7 @@ var Game_Controller = function() {
 
     controller.set_zoom = function(zoom) {
         controller.view.zoom = zoom;
+        controller.view.zoom_ctrl.value = 10 * zoom - 10;
     };
 };
 
