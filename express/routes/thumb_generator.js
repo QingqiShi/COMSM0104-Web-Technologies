@@ -71,7 +71,7 @@ var Game_View = function() {
 
         // Draw vertical lines
         for (var col = 0; col <= grid_col; col++) {
-            var x = (col * cell_size) + view.offset_x;
+            var x = (col * cell_size) + view.offset_x + view.canvas_width / 2;
             if (x >= 0 && x < view.canvas_width) {
                 result += view.svg.line(x, 0, x, view.canvas_height, GRID_COLOR);
             }
@@ -79,7 +79,7 @@ var Game_View = function() {
 
         // Draw horizontal lines
         for (var row = 0; row <= grid_row; row++) {
-            var y = (row * cell_size) + view.offset_y;
+            var y = (row * cell_size) + view.offset_y + view.canvas_height / 2;
             if (y >= 0 && y < view.canvas_height) {
                 result += view.svg.line(0, y, view.canvas_width, y, GRID_COLOR);
             }
@@ -97,8 +97,8 @@ var Game_View = function() {
             for (var j = 0; j < grid_col; j++) {
                 // Only draw cells that are alive
                 if (grid[i][j] == ALIVE) {
-                    var y = (i * cell_size) + view.offset_y;
-                    var x = (j * cell_size) + view.offset_x;
+                    var y = (i * cell_size) + view.offset_y + view.canvas_height / 2;
+                    var x = (j * cell_size) + view.offset_x + view.canvas_width / 2;
 
                     if (x >= -cell_size && x < view.canvas_width && y >= -cell_size && y < view.canvas_height) {
                         result += view.svg.rect(x, y, cell_size-1, cell_size-1, CELL_COLOR);
