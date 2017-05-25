@@ -64,7 +64,3 @@ coverage
 
 # Benchmarking
 benchmarks/graphs
-
-*.db
-
-express/public/images/thumbs/*
