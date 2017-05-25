@@ -239,7 +239,7 @@ footer p {
     z-index: 200;
 }
 
-.sign_in_pop_up, .sign_up_pop_up, .publish_pop_up {
+.sign_in_pop_up, .sign_up_pop_up, .publish_pop_up, .delete_pop_up {
     position: fixed;
     width: 26rem;
     margin-left: -13rem;
@@ -281,7 +281,7 @@ footer p {
     color: #fff;
 }
 
-.sign_in_fail, .sign_up_fail, .publish_fail {
+.sign_in_fail, .sign_up_fail, .publish_fail, .delete_fail {
     padding: 1rem;
     border: 1px solid red;
     background-color: rgba(255, 0, 0, 0.35);
@@ -295,7 +295,7 @@ footer p {
     color: green;
 }
 
-.sign_in_pop_up form, .sign_up_pop_up form, .publish_pop_up form {
+.sign_in_pop_up form, .sign_up_pop_up form, .publish_pop_up form, .delete_pop_up form {
     text-align: center;
     padding: 2rem;
 }
@@ -338,7 +338,7 @@ footer p {
     height: 5rem;
 }
 
-input.btn {
+input.btn, .game_card .delete {
     -webkit-appearance: none;
     padding: 0.3rem 1rem 0.3rem 1rem;
     font-size: 1rem;
@@ -355,7 +355,7 @@ input.btn {
     transition: all 0.2s ease-out;
 }
 
-input.btn:hover {
+input.btn:hover, .game_card .delete:hover {
     color: #fff;
     background-color: #0e83cd;
 }
@@ -377,8 +377,6 @@ input.btn:hover {
     background: #f6f6f6;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    padding: 2rem;
-    color: #222;
     text-decoration: none;
     box-shadow: 0 0.1rem 0.5rem #ddd;
 
@@ -398,6 +396,33 @@ input.btn:hover {
 }
 
 .game_card:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.game_card .delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    z-index: 99;
+}
+
+.game_card .delete:hover {
+    cursor: pointer;
+}
+
+.game_card .card_main {
+    position: relative;
+    display: block;
+    padding: 2rem;
+    color: #222;
+}
+
+.game_card .card_main:after {
     content: "";
     display: table;
     clear: both;

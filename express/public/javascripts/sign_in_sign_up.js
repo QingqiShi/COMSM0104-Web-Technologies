@@ -47,6 +47,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var publish_description = document.getElementById("publish_description");
     var publish_submit = document.querySelectorAll(".publish_pop_up .btn")[0];
 
+    /* Delete elements */
+    var delete_pane = document.getElementsByClassName("delete_pop_up")[0];
+    var delete_close_btn = document.querySelectorAll(".delete_pop_up .close")[0];
+    var delete_form = document.querySelectorAll(".delete_pop_up form")[0];
+    var delete_submit = document.querySelectorAll(".delete_pop_up .btn")[0];
+    var delete_game_id = document.getElementById("game_id");
+    var delete_btns = document.querySelectorAll(".game_card .delete");
+
 
     /* Show and hide elements */
     var show_element = function(element) {
@@ -137,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             save_local();
         }
 
-        if (validator()) {
+        if (!validator || validator()) {
             form.submit();
         }
     }
@@ -178,18 +186,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     /* Panes */
+    var assign_id = function(btn) {
+        btn.addEventListener("click", function() {
+            delete_game_id.value = btn.id;
+        });
+    }
     initialise_pane(sign_up_btn, sign_up_close_btn, sign_up_pane);
     initialise_pane(sign_in_btn, sign_in_close_btn, sign_in_pane);
     initialise_pane(sign_in_from_game,  null, sign_in_pane);
     initialise_pane(publish_btn, publish_close_btn, publish_pane);
     initialise_pane(null, sign_up_from_sign_in, sign_in_pane);
     initialise_pane(sign_up_from_sign_in, null, sign_up_pane);
+    initialise_pane(null, delete_close_btn, delete_pane);
+    for (var i = 0; i < delete_btns.length; i++) {
+        initialise_pane(delete_btns[i], null, delete_pane);
+        assign_id(delete_btns[i]);
+    }
+
 
 
     /* Submits */
     initialise_submit(sign_up_submit, sign_up_form, validate_sign_up);
     initialise_submit(sign_in_submit, sign_in_form, validate_sign_in);
     initialise_submit(publish_submit, publish_form, validate_publish);
+    initialise_submit(delete_submit, delete_form, null);
 
 
     /* Inputs */

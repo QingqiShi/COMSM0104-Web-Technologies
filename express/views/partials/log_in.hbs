@@ -62,4 +62,16 @@
             <input class="btn" type="button" value="Publish">
         </form>
     </div>
+
+    <div class="delete_pop_up hide">
+        <div class="close">x</div>
+        <h2>Delete</h2>
+        <div class="delete_fail">
+            Are you sure you want to delete this published game?
+        </div>
+        <form action="/delete.html" method="get">
+            <input id="game_id" type="hidden" name="game_id" value="">
+            <input class="btn" type="submit" value="Confirm">
+        </form>
+    </div>
 </div>

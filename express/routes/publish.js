@@ -51,7 +51,7 @@ var convert_svg = function (data) {
 
 var save_svg = function (svg, game_id) {
     var name = "" + game_id + "_thumb.svg";
-    path = __dirname + '/../public/images/thumbs/';
+    var path = __dirname + '/../public/images/thumbs/';
 
     fs.writeFile(path + name, svg, function(err) {
         if(err) {

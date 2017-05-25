@@ -15,6 +15,7 @@ var signin = require('./routes/signin');
 var signup = require('./routes/signup');
 var signout = require('./routes/signout');
 var publish = require('./routes/publish');
+var delete_game = require('./routes/delete');
 
 var hbs = require('hbs');
 
@@ -70,6 +71,14 @@ hbs.registerHelper("formatDate", function(datetime, format) {
     return n;
 });
 
+hbs.registerHelper("ifequal", function(a, b, options) {
+    if (a == b) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 app.use('/', index);
 app.use('/index.html', index);
 app.use('/game.html', game);
@@ -79,6 +88,7 @@ app.use('/signin.html', signin);
 app.use('/signup.html', signup);
 app.use('/signout.html', signout);
 app.use('/publish.html', publish);
+app.use('/delete.html', delete_game);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
