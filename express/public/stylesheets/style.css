@@ -194,8 +194,8 @@ p, a, span, div, li {
 /* Footer */
 footer {
     text-align: center;
-    background-color: #ccc;
-    color: #fff;
+    border-top: 1px solid #f6f6f6;
+    color: #ccc;
     padding: 1rem;
 }
 
