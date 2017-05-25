@@ -41,7 +41,7 @@ var Game_Controller = function() {
 
     controller.start = function() {
         if (!controller.running) {
-            var delay = -(controller.base_delay - 100) / 100 * controller.speed + controller.base_delay;
+            var delay = -(controller.base_delay - 10) / 100 * controller.speed + controller.base_delay;
             controller.view.activate_start();
             controller.running = true;
             controller.runner = setInterval(function() {
