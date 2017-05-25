@@ -1,14 +1,16 @@
 module.exports = function(grunt) {
 
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         'curl-dir': {
             './test': [
-                'http://localhost:8080/index.html',
-                'http://localhost:8080/browse.html',
-                'http://localhost:8080/game.html',
-                'http://localhost:8080/about.html'
+                'https://localhost:8080/index.html',
+                'https://localhost:8080/browse.html',
+                'https://localhost:8080/game.html',
+                'https://localhost:8080/about.html'
             ]
         },
 
