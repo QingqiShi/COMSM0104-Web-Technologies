@@ -4,11 +4,25 @@
 
 <div class="content">
     <article class="">
+        <h2>About This Project</h2>
+        <p>This project aimed to create a website for the COMSM0104 Web Technologies module. The topic we have chosen for the website was the Game of Life (originally proposed by John Conwey).</p>
+
         <h2>Authors</h2>
+        <p>This project was created by Qingqi Shi and Muyu Yang, we created both the front-end and back-end of the website in a pair programming style.</p>
         <div class="img_container">
             <img class="authors" src="/images/authors.png" alt="Authors">
-            <p>Left: Qingqi Shi. Right: Muyu Yang.</p>
+            <p>Left - Qingqi Shi. Right - Muyu Yang.</p>
         </div>
+
+        <h2>Features</h2>
+        <p>There are mainly <b>four pages</b> that can be visited: home, game, browse and about. The home page introduces the Game of Life, details its creator and its rules; the game page contains a client-side Javascript-based game (simulator) that the user can interact with; the browse page can be used to browse a list of games previously published by other potential users; finally, the about page is the one you are viewing right now.</p>
+        <p>We programmed the "<b>game</b>" using the Model-View-Controller pattern. The game rules are implemented using a simple iterative approach. The "view" part of game uses HTML5 canvas features. We also made the game interactive by tracking mouse events - left mouse button inserts or removes "alive" cells and right mouse button pans the canvas. We also added game controls such as start, pause, clear, zoom in/out and speed up/down.</p>
+        <p>We added a <b>user login system</b> that consists of sign up, sign in and sign out. All actions can be performed through buttons on the navigation bar. Form validations are performed on both the client side and the server side. User credentials are properly encrypted using salt-and-hash and stored in a database. Finally, the user login states are stored using sessions and cookies.</p>
+        <p>We also added a <b>publish</b> feature - any logged-in user has the option to publish a game to the browse page. Upon a publish request, game data are converted into a storable string representation that is stored in the database along with the username of the user that published the game. The game data are then interpreted on the server side, and converted into an SVG thumbnail image.</p>
+        <p>The <b>browse</b> page can also be considered as a feature. This page is dynamically generated on the serverside. Users can explore all published games from the list which would direct them to the game page. Once at the game page, the game data are restored along with zoom and position of the view port. If a game was published by the currently signed in user, a delete button will also be presented.</p>
+
+        <h2>Report</h2>
+        <p>For more detailed breakdowns of the project, see our submitted pdf report.</p>
     </article>
 
 </div>
